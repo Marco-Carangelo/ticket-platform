@@ -1,4 +1,4 @@
-package org.lesson.java.ticketplatform.model;
+package org.lesson.java.spring.ticketplatform.model;
 
 import java.time.LocalDateTime;
 
@@ -30,9 +30,9 @@ public class Ticket {
 	@Column
 	private String ticketBody;
 	
-	@NotNull
+	
 	@Column
-	private Status ticketStatus;
+	private Status ticketStatus = Status.OPEN;
 	
 	@NotNull
 	@Column
@@ -46,8 +46,9 @@ public class Ticket {
 	public Ticket() {
 		
 		this.createdAt = LocalDateTime.now();
-		this.ticketStatus = Status.OPEN;
+	
 	}
+	
 	
 	
 	//Getters and Setters
