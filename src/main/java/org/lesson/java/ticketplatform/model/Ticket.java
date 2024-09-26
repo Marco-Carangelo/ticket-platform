@@ -41,6 +41,13 @@ public class Ticket {
 	@Column 
 	LocalDateTime updateAt;
 	
+	//Constructor method
+	
+	public Ticket() {
+		
+		this.createdAt = LocalDateTime.now();
+		this.ticketStatus = Status.OPEN;
+	}
 	
 	
 	//Getters and Setters
@@ -48,7 +55,7 @@ public class Ticket {
 	public Integer getId() {
 		return id;
 	}
-
+	
 
 
 
