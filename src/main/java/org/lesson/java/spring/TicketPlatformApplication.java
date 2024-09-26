@@ -1,4 +1,4 @@
-package org.lesson.java.spirng;
+package org.lesson.java.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
