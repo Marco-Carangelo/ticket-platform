@@ -22,7 +22,6 @@ public class Ticket {
 	private Integer id;
 	
 	@Size(min = 5, max = 50)
-	@NotNull
 	@Column
 	private String ticketHeader;
 	
@@ -42,6 +41,94 @@ public class Ticket {
 	@Column 
 	LocalDateTime updateAt;
 	
+	
+	
+	//Getters and Setters
+	
+	public Integer getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+
+	public String getTicketHeader() {
+		return ticketHeader;
+	}
+
+
+
+
+	public void setTicketHeader(String ticketHeader) {
+		this.ticketHeader = ticketHeader;
+	}
+
+
+
+
+	public String getTicketBody() {
+		return ticketBody;
+	}
+
+
+
+
+	public void setTicketBody(String ticketBody) {
+		this.ticketBody = ticketBody;
+	}
+
+
+
+
+	public Status getTicketStatus() {
+		return ticketStatus;
+	}
+
+
+
+
+	public void setTicketStatus(Status ticketStatus) {
+		this.ticketStatus = ticketStatus;
+	}
+
+
+
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+
+
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+
+
+	public LocalDateTime getUpdateAt() {
+		return updateAt;
+	}
+
+
+
+
+	public void setUpdateAt(LocalDateTime updateAt) {
+		this.updateAt = updateAt;
+	}
+
+
+
+
 	//Enum object with the possible status of a ticket
 	private enum Status{
 		OPEN,
