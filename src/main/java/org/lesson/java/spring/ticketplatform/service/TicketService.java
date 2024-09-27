@@ -18,4 +18,13 @@ public class TicketService {
 		return repository.findAll();
 	}
 	
+	public List<Ticket> findTicketsContains(String text){
+		
+		return repository.findByTicketHeaderContainsIgnoreCase(text);
+	}
+	
+public Ticket findTicketById(Integer id){
+		
+		return repository.findById(id).get();
+	}
 }
