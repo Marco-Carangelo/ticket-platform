@@ -42,7 +42,7 @@ public class Ticket {
 	private LocalDateTime createdAt;
 	
 	@Column 
-	LocalDateTime updateAt;
+	LocalDateTime updatedAt;
 	
 	//Constructor method
 	
@@ -126,15 +126,15 @@ public class Ticket {
 
 
 
-	public LocalDateTime getUpdateAt() {
-		return updateAt;
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
 	}
 
 
 
 
-	public void setUpdateAt(LocalDateTime updateAt) {
-		this.updateAt = updateAt;
+	public void setUpdatedAt(LocalDateTime updateAt) {
+		this.updatedAt = updateAt;
 	}
 
 
