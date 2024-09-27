@@ -35,6 +35,12 @@ public class TicketController {
 		return "/tickets/index";
 	}
 	
-	
+	// Show method
+	@GetMapping("/{id}")
+	public String show(Model model, @PathVariable("id") Integer id) {
+		
+		model.addAttribute("ticketList", ticketService.findTicketById(id));
+		return "/tickets/index";
+	}
 
 }
