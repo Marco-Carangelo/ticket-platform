@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<!--Head section incorporated by fragment-->
+<head th:insert="elements/fragments :: head"> </head>
+		
+<body>
+	
+	<!--HEADER WITH NAVBAR -->
+	<header th:replace="elements/navbar :: header('tickets')"></header>
+	
+	<!--START OF THE MAIN SECTION -->
+	<main>
+		
+		<!--Container of the main section -->
+		<div class="container-lg   ">
+			<div class="row justify-content-center ">
+				
+			<!--Main title of the page -->
+		    <div class="col-12 text-center py-3 ">
+		      <h1>Ticket detail</h1>
+		    </div>
+			
+			
+			<!--Table with Offerta objects list -->
+			
+			
+				<div class="row col-10" th:object="${ticket}">
+				  <div class="d-flex">
+						<div class="col-8">
+							<h5 class=" mb-2">[[*{ticketHeader}]]</h5>
+					    	<h6 class=" mb-3 text-body-secondary">Opened by username</h6>
+						</div>
+						<div class="col-4w">
+							<h5>Status: <span class="badge text-bg-warning">[[*{ticketStatus}]]</span></h5>
+						</div>
+					</div>
+
+					<div class="border rounded p-1 mb-3">
+				    	<p class="p-1">[[*{ticketBody}]]</p>
+					</div>
+					
+					<p class="p-1 text-secondary">Creted at: [[*{createdAt}]]</p>
+					<p class="p-1 text-secondary">Updated at: [[*{createdAt}]] </p>
+				  
+				</div>
+
+			</div>
+			
+			
+		
+		   
+		  </div>
+		
+
+	</main>
+	<!--END OF THE MAIN SECTION -->
+	
+	<!--FOOTER -->
+<!--	<footer th:replace="elements/fragments :: footer" ></footer>-->
+		
+</body>
+</html>
