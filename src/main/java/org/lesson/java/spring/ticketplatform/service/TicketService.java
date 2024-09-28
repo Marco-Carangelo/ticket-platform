@@ -27,4 +27,9 @@ public Ticket findTicketById(Integer id){
 		
 		return repository.findById(id).get();
 	}
+
+public Ticket createTicket(Ticket ticket) {
+	
+	return repository.save(ticket);
+}
 }
