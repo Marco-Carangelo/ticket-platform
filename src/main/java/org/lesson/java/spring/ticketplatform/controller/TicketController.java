@@ -42,5 +42,17 @@ public class TicketController {
 		model.addAttribute("ticket", ticketService.findTicketById(id));
 		return "/tickets/show";
 	}
+	
+	
+	//Create method
+	@GetMapping("/create")
+	public String create(Model model) {
+		
+		Ticket ticket = new Ticket();
+		model.addAttribute(ticket);
+		
+		return "/tickets/create";
+		
+	}
 
 }
