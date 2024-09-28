@@ -59,9 +59,13 @@
 		  					</div>
 						</div>
 						
-						<!--Submit and Reset buttons -->
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<button type="reset" class="btn btn-danger">Reset</button>
+						<!--Submit, Reset and Back buttons -->
+						
+						<div class="d-flex">
+							<button type="submit" class="btn btn-primary p-2 mx-1">Submit</button>
+							<button type="reset" class="btn btn-danger p-2 mx-1">Reset</button>
+							<a class="btn btn-primary p-2 ms-auto mx-1" th:href="@{/tickets}">Back</a>
+						</div>
 						
 					</form>
 				  
