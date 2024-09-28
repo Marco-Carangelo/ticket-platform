@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<!--Head section incorporated by fragment-->
+<head th:insert="elements/fragments :: head"> </head>
+		
+<body>
+	
+	<!--HEADER WITH NAVBAR -->
+	<header th:replace="elements/navbar :: header('tickets')"></header>
+	
+	<!--START OF THE MAIN SECTION -->
+	<main>
+		
+		<!--Container of the main section -->
+		<div class="container-lg   ">
+			<div class="row justify-content-center ">
+				
+			<!--Main title of the page -->
+		    <div class="col-12 text-center py-3 ">
+		      <h1>Create a new ticket</h1>
+			  <p class="lead">An assistant will answer you soon</p>
+		    </div>
+			
+			
+			<!--Section with form -->
+
+				<div class="row col-10" >
+					
+					<form
+						id="form-ticket"
+						th:object="${ticket}"
+						th:action"@{/tickets/create}"
+						method="POST"
+					>
+					
+						<div class="mb-4">
+						  <label for="ticketHeader" class="form-label">Ticket header</label>
+						  <input type="text" class="form-control" id="ticketHeader" 
+						  placeholder="Insert the title of the ticket" th:field="*{ticketHeader}">
+						</div>
+						<div class="mb-4">
+						  <label for="ticketBody" class="form-label">Insert here your request</label>
+						  <textarea class="form-control" id="ticketBody" rows="3" th:field="*{ticketBody}"></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="reset" class="btn btn-danger">Reset</button>
+						
+					</form>
+				  
+				</div>
+
+			</div>
+			
+			
+		
+		   
+		  </div>
+		
+
+	</main>
+	<!--END OF THE MAIN SECTION -->
+	
+	<!--FOOTER -->
+<!--	<footer th:replace="elements/fragments :: footer" ></footer>-->
+		
+</body>
+</html>
