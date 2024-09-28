@@ -37,4 +37,8 @@ public class TicketService {
 		
 		return repository.save(ticket);
 	}
+	
+	public void deleteTicket(Integer id) {
+		repository.deleteById(id);
+	}
 }
