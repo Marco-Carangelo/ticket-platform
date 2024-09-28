@@ -67,14 +67,41 @@
 					      <td>[[*{createdAt}]]</td>
 					      <td>[[*{updatedAt}]]</td>
 						  <td class>
-							
+							<!-- Button linked to show page -->
 							<a class="btn btn-sm btn-primary" th:href="@{/tickets/{id}(id=${ticket.id})}">
 								Show
 							</a>
-						
+							<!-- Button linked to edit page -->
 							<a class="btn btn-sm btn-success" th:href="@{/tickets/edit/{id}(id=${ticket.id})}">
 								Edit
 							</a>
+							
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" th:data-bs-target="'#delete-modal' + ${ticket.id}" sec:authorize="hasAuthority('ADMIN')">
+							  Elimina
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" th:id="'delete-modal' + ${ticket.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete ticket</h1>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body">
+							      	Do you want to delete the ticket: [[${ticket.ticketHeader}]]?
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<form class="d-inline-block" th:action="@{/tickets/delete/{id}(id=${ticket.id})}" method="POST">
+										<button type="submit" class="btn btn-warning btn-sm " >Delete</button>	
+									</form>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							
 						  </td>
 					    </tr>
 					  </tbody>
@@ -96,5 +123,9 @@
 	<!--FOOTER -->
 <!--	<footer th:replace="elements/fragments :: footer" ></footer>-->
 		
+	<!--Scripts links -->
+	<div th:insert="elements/fragments :: scripts">
+	</div>
+	
 </body>
 </html>
