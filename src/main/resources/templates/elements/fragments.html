@@ -25,11 +25,13 @@
 
 	
 	<!--MESSAGES FRAGMENT-->
-	<!--Used to confirm elements delete -->
-	<div th:fragment="succAlert(message)" class=" alert alert-success alert-dismissible fade show" role="alert">
+	<!--Used to confirm operations success -->
+	<div th:fragment="messAlert(message, alertClass)" class=" alert alert-dismissible fade show" role="alert"
+	 th:classappend="${alertClass} ? 'alert-success' : 'alert-danger'" >
 		<span th:text="${message}"></span>
 		<button type="button" class=" btn-close" data-bs-dismiss="alert"></button>
 	</div>
+	
 	
 	<!--FOOTER FRAGMENT-->
 	<footer th:fragment="footer" class="bg-dark border-top border-warning mt-3 mb-0" data-bs-theme="dark">
