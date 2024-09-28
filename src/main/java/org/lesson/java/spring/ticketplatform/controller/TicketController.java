@@ -49,7 +49,7 @@ public class TicketController {
 	public String create(Model model) {
 		
 		Ticket ticket = new Ticket();
-		model.addAttribute(ticket);
+		model.addAttribute("ticket", ticket);
 		
 		return "/tickets/create";
 		
