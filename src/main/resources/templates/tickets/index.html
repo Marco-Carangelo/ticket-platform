@@ -45,6 +45,10 @@
 					
 				</div>
 				
+				<th:block th:if="${message != null}">
+					<div th:replace="elements/fragments :: succAlert(${message})"></div>
+				</th:block>
+				
 				<!--Table with ticket objects list -->
 				<!--The table is showed only if there is at least one element to show -->
 				<div class="d-flex justify-content-center" th:if="${ticketList.size > 0}" >
