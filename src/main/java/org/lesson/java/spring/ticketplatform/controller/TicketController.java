@@ -92,5 +92,21 @@ public class TicketController {
 		return "/tickets/edit";
 		
 	}
+	
+	@PostMapping("/edit/{id}")
+	public String update(
+			@Valid @ModelAttribute("ticket") Ticket formTicket,
+			BindingResult bindingResult,
+			Model model) {
+		
+		if(bindingResult.hasErrors()) {
+			return "/tickets/edit";
+		}
+		
+		formTicket.setUpdatedAt(LocalDateTime.now());
+		ticketService.updateTicket(formTicket);
+		
+		return "redirect:/tickets";
+	}
 
 }
