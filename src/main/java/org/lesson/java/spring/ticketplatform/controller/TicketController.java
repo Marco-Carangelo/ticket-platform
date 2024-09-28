@@ -108,5 +108,13 @@ public class TicketController {
 		
 		return "redirect:/tickets";
 	}
+	
+	@PostMapping("/delete/{id}")
+	public String delete( @PathVariable("id") Integer id) {
+		
+		ticketService.deleteTicket(id);
+		
+		return "redirect:/tickets";
+	}
 
 }
