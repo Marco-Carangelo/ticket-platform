@@ -1,8 +1,6 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 
@@ -66,7 +65,8 @@ public class TicketController {
 	public String store(
 			@Valid @ModelAttribute("ticket") Ticket formTicket,
 			BindingResult bindingResult,
-			Model model) {
+			Model model,
+			RedirectAttributes attributes ) {
 		
 		if(bindingResult.hasErrors()) {
 			return "/tickets/create";
@@ -76,6 +76,8 @@ public class TicketController {
 		formTicket.setCreatedAt(LocalDateTime.now());
 		formTicket.setUpdatedAt(LocalDateTime.now());
 		ticketService.createTicket(formTicket);
+		
+		attributes.addFlashAttribute("message","The ticket " + formTicket.getTicketHeader() + " has been created successfully");
 		
 		return "redirect:/tickets";
 	}
