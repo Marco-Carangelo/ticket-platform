@@ -46,7 +46,7 @@
 				</div>
 				
 				<th:block th:if="${message != null}">
-					<div th:replace="elements/fragments :: succAlert(${message})"></div>
+					<div th:replace="elements/fragments :: messAlert(${message} , ${alertClass})"></div>
 				</th:block>
 				
 				<!--Table with ticket objects list -->
