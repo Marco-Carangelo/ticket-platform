@@ -34,16 +34,31 @@
 						th:action"@{/tickets/create}"
 						method="POST"
 					>
-					
+						<!--Form section for ticket head-->
 						<div class="mb-4">
 						  <label for="ticketHeader" class="form-label">Ticket header</label>
 						  <input type="text" class="form-control" id="ticketHeader" 
 						  placeholder="Insert the title of the ticket" th:field="*{ticketHeader}">
+						  
+							 <div th:if="${#fields.hasErrors('ticketHeader')}" class="invalid-feedback">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('ticketHeader')}" th:text="${err}"></li>
+								</ul>
+							</div>
 						</div>
+						<!--Form section for ticket body -->
 						<div class="mb-4">
 						  <label for="ticketBody" class="form-label">Insert here your request</label>
 						  <textarea class="form-control" id="ticketBody" rows="3" th:field="*{ticketBody}"></textarea>
+						  
+						 	 <div th:if="${#fields.hasErrors('ticketBody')}" class="invalid-feedback">
+		  						<ul>
+		  							<li class="alert alert-danger" th:each="err : ${#fields.errors('ticketBody')}" th:text="${err}"></li>
+		  						</ul>
+		  					</div>
 						</div>
+						
+						<!--Submit and Reset buttons -->
 						<button type="submit" class="btn btn-primary">Submit</button>
 						<button type="reset" class="btn btn-danger">Reset</button>
 						
