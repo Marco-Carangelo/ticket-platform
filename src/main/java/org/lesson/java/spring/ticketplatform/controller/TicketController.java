@@ -63,7 +63,8 @@ public class TicketController {
 	}
 	
 	@PostMapping("/create")
-	public String store(@Valid @ModelAttribute("ticket") Ticket formTicket,
+	public String store(
+			@Valid @ModelAttribute("ticket") Ticket formTicket,
 			BindingResult bindingResult,
 			Model model) {
 		
@@ -79,5 +80,17 @@ public class TicketController {
 		return "redirect:/tickets";
 	}
 	
+	
+	// Update method
+	
+	@GetMapping("/edit/{id}")
+	public String edit(Model model, @PathVariable("id") Integer id) {
+		
+		Ticket ticket = ticketService.findTicketById(id);
+		model.addAttribute("ticket", ticket);
+		
+		return "/tickets/edit";
+		
+	}
 
 }
