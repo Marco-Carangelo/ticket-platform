@@ -36,14 +36,16 @@
 							</div>
 						</form>    
 					</div >
-						
-<!--					<div class="text-center">-->
-<!--						<div class="p-2 fs-4">Create a new ticket</div>-->
-<!--						<a th:href="@{tickets/create}" class="btn btn-primary btn-lg ps-3"  role="button">New ticket</a>-->
-<!--					</div>-->
+					
+					<!--Create new ticket button -->
+					<div class="text-center">
+						<div class="p-2 fs-4">Create a new ticket</div>
+						<a th:href="@{tickets/create}" class="btn btn-primary btn-lg ps-3"  role="button">New ticket</a>
+					</div>
+					
 				</div>
 				
-				<!--Table with Offerta objects list -->
+				<!--Table with ticket objects list -->
 				<!--The table is showed only if there is at least one element to show -->
 				<div class="d-flex justify-content-center" th:if="${ticketList.size > 0}" >
 					<table class="table w-75 table-striped table-hover ">
