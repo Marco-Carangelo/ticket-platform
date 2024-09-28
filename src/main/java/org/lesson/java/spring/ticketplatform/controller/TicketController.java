@@ -78,6 +78,7 @@ public class TicketController {
 		ticketService.createTicket(formTicket);
 		
 		attributes.addFlashAttribute("message","The ticket " + formTicket.getTicketHeader() + " has been created successfully");
+		attributes.addFlashAttribute("alertClass", true );
 		
 		return "redirect:/tickets";
 	}
@@ -99,7 +100,8 @@ public class TicketController {
 	public String update(
 			@Valid @ModelAttribute("ticket") Ticket formTicket,
 			BindingResult bindingResult,
-			Model model) {
+			Model model,
+			RedirectAttributes attributes) {
 		
 		if(bindingResult.hasErrors()) {
 			return "/tickets/edit";
@@ -108,14 +110,20 @@ public class TicketController {
 		formTicket.setUpdatedAt(LocalDateTime.now());
 		ticketService.updateTicket(formTicket);
 		
+		attributes.addFlashAttribute("message","The ticket " + formTicket.getTicketHeader() + " has been updated successfully");
+		attributes.addFlashAttribute("alertClass", true );
 		return "redirect:/tickets";
 	}
 	
 	@PostMapping("/delete/{id}")
-	public String delete( @PathVariable("id") Integer id) {
+	public String delete( @PathVariable("id") Integer id,
+			RedirectAttributes attributes) {
+		
 		
 		ticketService.deleteTicket(id);
 		
+		attributes.addFlashAttribute("message","The ticket with id " + id + " has been deleted successfully");
+		attributes.addFlashAttribute("alertClass", false );
 		return "redirect:/tickets";
 	}
 
