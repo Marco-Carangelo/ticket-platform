@@ -1,6 +1,7 @@
 package org.lesson.java.spring.ticketplatform.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -43,6 +45,9 @@ public class Ticket {
 	
 	@Column 
 	LocalDateTime updatedAt;
+	
+	@OneToMany(mappedBy = "ticket")
+	private List<Note> notes;
 	
 	//Constructor method
 	
@@ -136,6 +141,21 @@ public class Ticket {
 	public void setUpdatedAt(LocalDateTime updateAt) {
 		this.updatedAt = updateAt;
 	}
+
+	
+	
+
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
 
 
 
