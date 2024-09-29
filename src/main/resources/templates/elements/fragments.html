@@ -27,7 +27,7 @@
 	<!--MESSAGES FRAGMENT-->
 	<!--Used to confirm operations success -->
 	<div th:fragment="messAlert(message, alertClass)" class=" alert alert-dismissible fade show" role="alert"
-	 th:classappend="${alertClass} ? 'alert-success' : 'alert-danger'" >
+	 th:classappend="${alertClass} == 'alert-success' ? 'alert-success' : ${alertClass}" >
 		<span th:text="${message}"></span>
 		<button type="button" class=" btn-close" data-bs-dismiss="alert"></button>
 	</div>
