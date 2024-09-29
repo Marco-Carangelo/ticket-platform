@@ -41,6 +41,47 @@ public class Note {
 		@JoinColumn(name="ticket_id", nullable=false)
 		private Ticket ticket;
 		
+		//Getters and setters
+		public Integer getId() {
+			return id;
+		}
+
+		public void setId(Integer id) {
+			this.id = id;
+		}
+
+		public String getAuthor() {
+			return author;
+		}
+
+		public void setAuthor(String author) {
+			this.author = author;
+		}
+
+		public String getNoteText() {
+			return noteText;
+		}
+
+		public void setNoteText(String noteText) {
+			this.noteText = noteText;
+		}
+
+		public LocalDateTime getCreatedAt() {
+			return createdAt;
+		}
+
+		public void setCreatedAt(LocalDateTime createdAt) {
+			this.createdAt = createdAt;
+		}
+
+		public Ticket getTicket() {
+			return ticket;
+		}
+
+		public void setTicket(Ticket ticket) {
+			this.ticket = ticket;
+		}
+		
 		
 
 }
