@@ -78,7 +78,7 @@ public class TicketController {
 		ticketService.createTicket(formTicket);
 		
 		attributes.addFlashAttribute("message","The ticket " + formTicket.getTicketHeader() + " has been created successfully");
-		attributes.addFlashAttribute("alertClass", true );
+		attributes.addFlashAttribute("alertClass", "alert-success" );
 		
 		return "redirect:/tickets";
 	}
@@ -111,7 +111,7 @@ public class TicketController {
 		ticketService.updateTicket(formTicket);
 		
 		attributes.addFlashAttribute("message","The ticket " + formTicket.getTicketHeader() + " has been updated successfully");
-		attributes.addFlashAttribute("alertClass", true );
+		attributes.addFlashAttribute("alertClass", "alert-success" );
 		return "redirect:/tickets";
 	}
 	
@@ -123,7 +123,7 @@ public class TicketController {
 		ticketService.deleteTicket(id);
 		
 		attributes.addFlashAttribute("message","The ticket with id " + id + " has been deleted successfully");
-		attributes.addFlashAttribute("alertClass", false );
+		attributes.addFlashAttribute("alertClass", "alert-danger" );
 		return "redirect:/tickets";
 	}
 
