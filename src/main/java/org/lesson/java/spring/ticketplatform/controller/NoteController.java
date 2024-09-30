@@ -53,7 +53,7 @@ public class NoteController {
 		
 //		if(bindingResult.hasErrors()) {
 //			model.addAttribute("ticket", ticketService.findTicketById(ticketId));
-//			return "/tickets/" + ticketId;
+//			return "redirect:/tickets/" + ticketId;
 //		}
 		
 		formNote.setCreatedAt(LocalDateTime.now());
