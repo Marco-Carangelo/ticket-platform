@@ -6,7 +6,7 @@
 <!--Head section incorporated by fragment-->
 <head th:insert="elements/fragments :: head"> </head>
 		
-<body>
+<body class="bg-secondary">
 	
 	<!--HEADER WITH NAVBAR -->
 	<header th:replace="elements/navbar :: header('tickets')"></header>
@@ -15,7 +15,7 @@
 	<main>
 		
 		<!--Container of the main section -->
-		<div class="container-lg bg-success-subtle bg-opacity-50 rounded ">
+		<div class="container-lg bg-light rounded ">
 			<div class="row justify-content-center ">
 				
 			<!--Main title of the page -->
@@ -26,7 +26,7 @@
 			
 			<!--Section with object details -->
 			
-				<div class="row col-10 border-bottom border-2 mb-2"  th:object="${ticket}" >
+				<div class="row col-10 border-bottom border-2 mb-2  pt-2 rounded"  th:object="${ticket}" >
 				  <div class="d-flex">
 						<div class="col-8">
 							<h5 class=" mb-2">[[*{ticketHeader}]]</h5>
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 
-					<div class="border rounded p-1 mb-3">
+					<div class="border bg-white rounded p-1 mb-3 ">
 				    	<p class="p-1">[[*{ticketBody}]]</p>
 					</div>
 					
