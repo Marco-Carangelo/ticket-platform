@@ -25,7 +25,7 @@ public class Category {
 		@Column
 		private String name;
 		
-		@Size(min = 10, max = 150)
+		@Size(min = 10, max = 255)
 		@NotBlank
 		@Column
 		private String description;
