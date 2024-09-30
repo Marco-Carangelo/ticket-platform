@@ -3,6 +3,9 @@ package org.lesson.java.spring.ticketplatform.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,6 +13,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -48,6 +54,15 @@ public class Ticket {
 	
 	@OneToMany(mappedBy = "ticket")
 	private List<Note> notes;
+	
+	@ManyToMany()
+	@JoinTable(
+			name = "category_ticket",
+			joinColumns = @JoinColumn(name = "ticket_id"),
+			inverseJoinColumns = @JoinColumn (name = "category_id")
+	)
+	@JsonBackReference
+	private List<Category> categories;
 	
 	//Constructor method
 	
@@ -155,6 +170,20 @@ public class Ticket {
 	public void setNotes(List<Note> notes) {
 		this.notes = notes;
 	}
+	
+	
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+
 
 
 
