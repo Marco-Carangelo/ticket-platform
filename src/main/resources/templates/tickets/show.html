@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 
 <html xmlns:th="http://www.thymeleaf.org">
@@ -14,7 +15,7 @@
 	<main>
 		
 		<!--Container of the main section -->
-		<div class="container-lg">
+		<div class="container-lg bg-success-subtle bg-opacity-50 rounded ">
 			<div class="row justify-content-center ">
 				
 			<!--Main title of the page -->
@@ -55,53 +56,75 @@
 				      <h3>Ticket notes</h3>
 				    </div>
 					
-					<p>
+					<!--List of notes -->
+					
+					<th:block th:each="note : ${ticket.notes}" th:object="${note}">
+						
+						<div class="card mb-3">
+						  <div class="card-header">
+						    <p class="fw-4"> Note #[[*{id}]] - Created by <span class="fst-italic">[[*{author}]]</span> at <span class="fst-italic">[[*{createdAt}]] </span></p>
+						  </div>
+						  <div class="card-body">
+						    <p class="card-text">[[*{noteText}]]</p>
+						  </div>
+						</div>
+						
+					</th:block>
+					
+					<p class="mt-1">
 						<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#createNoteCollapse" aria-expanded="false" aria-controls="createNoteCollapse">
 					    Create a new note
 						</button>
 				 	</p>
 					
+					<form
+						id="form-note"
+						th:object="${note}"
+						th:action="@{/notes/create}"
+						method="POST"
+					>
+				
+					<!--Errors list  -->
+					<div th:if="${#fields.hasErrors()}">
+							<ul>
+							<li
+							th:each="err : ${#fields.allErrors()}"
+							th:text="${err}"
+							class="alert alert-danger">
+							
+							</li>
+						</ul>
+																
+					</div>
+					
+					<!--Form fields contained in a collapse element-->
 					  <div class="collapse mb-3" id="createNoteCollapse">
 					    <div class="card card-body">
-							
-						<form
-							id="form-note"
-							th:object="${note}"
-							th:action="@{/notes/create}"
-							method="POST"
-						>
-						
+														
 							<div class="mb-4">
 							  <label for="noteText" class="form-label">Insert here the note text</label>
 							  <textarea class="form-control" id="noteText" rows="3" th:field="*{noteText}"></textarea>
-							  
-							 	 <div th:if="${#fields.hasErrors('noteText')}" class="invalid-feedback d-block">
-			  						<ul>
-			  							<li class="alert alert-danger" th:each="err : ${#fields.errors('noteText')}" th:text="${err}"></li>
-			  						</ul>
-			  					</div>
 							</div>
-						
+							<!--Hidden field containing the ticket object related to the note -->
 							<input type="hidden" th:field="*{ticket}" id="ticket">
 							
-							
+							<!--Submit and reset buttons -->
 							<div class="d-flex">
 								<button type="submit" class="btn btn-primary p-2 mx-1">Submit</button>
 								<button type="reset" class="btn btn-danger p-2 mx-1">Reset</button>
 							</div>
-						</form>
-					     	
+					
 					    </div>
 					  </div>
 					  
-					<div class="d-flex justify-content-end">
+					  </form>
+					  
+					<div class="d-flex justify-content-end mb-5">
 						<a class="btn btn-primary " th:href="@{/tickets}">Back</a>
 					</div>
 				  
 				</div>
-
 			</div>
-   
 		  </div>
 		
 
