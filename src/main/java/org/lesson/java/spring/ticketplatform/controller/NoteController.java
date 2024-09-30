@@ -52,8 +52,10 @@ public class NoteController {
 		int ticketId = formNote.getTicket().getId();
 		
 		if(bindingResult.hasErrors()) {
-			//model.addAttribute("ticket", ticketService.findTicketById(ticketId));
-			return "redirect:/tickets/" + ticketId;
+			Ticket ticket = ticketService.findTicketById(ticketId);
+			
+			model.addAttribute("ticket", ticket );
+			return "/tickets/show"  ;
 		}
 		
 		formNote.setCreatedAt(LocalDateTime.now());
