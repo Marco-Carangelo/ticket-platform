@@ -1,6 +1,8 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
 import java.time.LocalDateTime;
+
+import org.lesson.java.spring.ticketplatform.model.Note;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
@@ -45,7 +47,14 @@ public class TicketController {
 	@GetMapping("/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
 		
-		model.addAttribute("ticket", ticketService.findTicketById(id));
+		Ticket ticket = ticketService.findTicketById(id);
+		
+		model.addAttribute("ticket", ticket );
+		
+		Note note = new Note();
+		note.setTicket(ticket);
+		model.addAttribute("note", note);
+		
 		return "/tickets/show";
 	}
 	
