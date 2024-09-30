@@ -60,6 +60,7 @@
 					      <th scope="col">Status</th>
 					      <th scope="col">Creation date</th>
 						  <th scope="col">Update Date</th>
+						 
 						  <th class="button-headers"></th>
 					    </tr>
 					  </thead>
@@ -70,6 +71,7 @@
 						  <td>[[*{ticketStatus}]]</td>
 					      <td>[[*{createdAt}]]</td>
 					      <td>[[*{updatedAt}]]</td>
+				
 						  <td class>
 							<!-- Button linked to show page -->
 							<a class="btn btn-sm btn-primary" th:href="@{/tickets/{id}(id=${ticket.id})}">
@@ -82,7 +84,7 @@
 							
 							<!-- Button trigger modal -->
 							<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" th:data-bs-target="'#delete-modal' + ${ticket.id}" sec:authorize="hasAuthority('ADMIN')">
-							  Elimina
+							  Delete
 							</button>
 
 							<!-- Modal -->
