@@ -51,10 +51,10 @@ public class NoteController {
 		
 		int ticketId = formNote.getTicket().getId();
 		
-//		if(bindingResult.hasErrors()) {
-//			model.addAttribute("ticket", ticketService.findTicketById(ticketId));
-//			return "redirect:/tickets/" + ticketId;
-//		}
+		if(bindingResult.hasErrors()) {
+			//model.addAttribute("ticket", ticketService.findTicketById(ticketId));
+			return "redirect:/tickets/" + ticketId;
+		}
 		
 		formNote.setCreatedAt(LocalDateTime.now());
 		//Temporary setting a string for the author of the notes
