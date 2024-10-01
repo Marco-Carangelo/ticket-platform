@@ -68,7 +68,7 @@
 					    <tr th:each="ticket: ${ticketList}" th:object="${ticket}">
 					      <td>[[*{id}]]</td>
 					      <td>[[*{ticketHeader}]]</td>
-						  <td>[[*{ticketStatus}]]</td>
+						  <td><span class="badge text-bg-info">[[*{ticketStatus}]]</span></td>
 					      <td>[[*{createdAt}]]</td>
 					      <td>[[*{updatedAt}]]</td>
 				
