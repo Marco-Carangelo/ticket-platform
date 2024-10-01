@@ -25,22 +25,22 @@
 			
 			
 			<!--Section with object details -->
-			
 				<div class="row col-10 border-bottom border-2 mb-2  pt-2 rounded"  th:object="${ticket}" >
-				  <div class="d-flex">
-						<div class="col-8">
+				  <div class="d-flex ">
+						<div class="col-7">
 							<h5 class=" mb-2">[[*{ticketHeader}]]</h5>
 					    	<h6 class=" mb-3 text-body-secondary">Opened by username</h6>
 						</div>
 						
-						<div class="col-4w">
-							<h5>Status: <span class="badge text-bg-warning">[[*{ticketStatus}]]</span></h5>
+						<div th:class="'d-flex align-items-center justify-content-center flex-fill rounded border ' + ${bgColor} + ' ' + ${borderColor}">
+							<h5>Status: <span th:class="'badge ms-3 ' + ${badgeColor}">[[*{ticketStatus}]]</span></h5>
 						</div>
 					</div>
 					<div class="mb-3">
 						<span class="fw-4">Categories: </span> 
-						<span class="badge text-bg-warning mx-1" th:each="category : *{categories}">[[${category.name}]]</span>
+						<span class="badge text-bg-warning mx-1 " th:each="category : *{categories}">[[${category.name}]]</span>
 					</div>
+					
 
 					<div class="border bg-white rounded p-1 mb-3 ">
 				    	<p class="p-1">[[*{ticketBody}]]</p>
@@ -139,9 +139,13 @@
 	<!--FOOTER -->
 <!--	<footer th:replace="elements/fragments :: footer" ></footer>-->
 
+	
+
 	<!--Scripts links -->
 	<div th:insert="elements/fragments :: scripts">
 	</div>
+	
+	
 		
 </body>
 </html>
