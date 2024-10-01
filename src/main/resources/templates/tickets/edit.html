@@ -58,10 +58,29 @@
 		  					</div>
 						</div>
 						
+						<!--Form section for ticket status -->
+						<div class="mb-4">
+							<p>Ticket status:</p>
+							<small class="mb-3 px-2 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2 d-inline-block">Rember to update the status with caution</small>
+							
+							<div class="mb-3">
+								<input type="radio" class="btn-check" name="options-outlined" id="success-outlined" th:field="*{ticketStatus}" value="OPEN" autocomplete="off">
+								<label class="btn btn-outline-info" for="success-outlined">OPEN</label>
+	
+								<input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" th:field="*{ticketStatus}" value="ASSIGNED" autocomplete="off">
+								<label class="btn btn-outline-warning" for="danger-outlined">ASSIGNED</label>
+								
+								<input type="radio" class="btn-check" name="options-outlined" id="closed-outlined" th:field="*{ticketStatus}" value="CLOSED" autocomplete="off">
+								<label class="btn btn-outline-success" for="closed-outlined">CLOSED</label>
+							</div>
+							
+						</div>
+						
 						<!--Hidden fields-->
 						<div class="visually-hidden">
 							<input type="text" class="form-control" id="ticketStatus" th:field="*{ticketStatus}">
 							<input type="datetime" class="form-control" id="createdAt" th:field="*{createdAt}">
+							
 							
 						</div>
 						
