@@ -1,6 +1,7 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 import org.lesson.java.spring.ticketplatform.model.Note;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
@@ -48,9 +49,13 @@ public class TicketController {
 	public String show(Model model, @PathVariable("id") Integer id) {
 		
 		Ticket ticket = ticketService.findTicketById(id);
-		
 		model.addAttribute("ticket", ticket );
 		
+		//Adding to model the attributes to set the status elements color
+		Status status = ticket.getTicketStatus();
+		model.addAllAttributes(setStatusColor(status));
+		
+		//Adding to model a blank Note to let the user add one
 		Note note = new Note();
 		note.setTicket(ticket);
 		model.addAttribute("note", note);
@@ -135,5 +140,35 @@ public class TicketController {
 		attributes.addFlashAttribute("alertClass", "alert-danger" );
 		return "redirect:/tickets";
 	}
+	
+	//Utility classes
+		private HashMap<String, String> setStatusColor(Status status) {
+			
+			HashMap<String, String> attributes = new HashMap<String, String>();
+			
+			switch (status) {
+				case OPEN:
+					attributes.put("badgeColor","text-bg-info");
+					attributes.put("bgColor","bg-info-subtle");
+					attributes.put("borderColor","border-info");
+	
+					break;
+				case ASSIGNED :
+					attributes.put("badgeColor","text-bg-warning");
+					attributes.put("bgColor","bg-warning-subtle");
+					attributes.put("borderColor","border-warning");
+					break;
+				case CLOSED:
+					attributes.put("badgeColor","text-bg-success");
+					attributes.put("bgColor","bg-success-subtle");
+					attributes.put("borderColor","border-success");
+					break;
+			}
+			
+			return attributes;
+			
+			
+		}
+
 
 }
