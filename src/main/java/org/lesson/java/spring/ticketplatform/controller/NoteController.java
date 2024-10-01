@@ -49,6 +49,10 @@ public class NoteController {
 			Model model,
 			RedirectAttributes attributes ) {
 		
+		formNote.setCreatedAt(LocalDateTime.now());
+		//Temporary setting a string for the author of the notes
+		formNote.setAuthor("Temp Author");
+		
 		int ticketId = formNote.getTicket().getId();
 		
 		if(bindingResult.hasErrors()) {
@@ -58,9 +62,7 @@ public class NoteController {
 			return "/tickets/show"  ;
 		}
 		
-		formNote.setCreatedAt(LocalDateTime.now());
-		//Temporary setting a string for the author of the notes
-		formNote.setAuthor("Temp Author");
+		
 		noteService.createNote(formNote);
 		
 		
