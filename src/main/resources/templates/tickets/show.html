@@ -32,24 +32,66 @@
 					    	<h6 class=" mb-3 text-body-secondary">Opened by username</h6>
 						</div>
 						
+						<!-- Section for display and update the ticket status -->
 						<div th:class="'d-flex flex-column  flex-fill rounded border ' + ${bgColor} + ' ' + ${borderColor}">
 							<h5 class="py-2 align-self-center">Status: <span th:class="'badge ms-3 ' + ${badgeColor}">[[*{ticketStatus}]]</span></h5>
-							<button type="button" class="btn btn-link">Update ticket status</button>
+							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Update ticket status</button>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h1 class="modal-title fs-5" id="exampleModalLabel">Update ticket status</h1>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body">
+							        <p>The current status of the ticket is <strong>[[*{ticketStatus}]]</strong></p>
+									<p>Do you want to update it?</p>
+							      </div>
+							      <div class="modal-footer">
+									<form
+										id="form-ticket"
+										th:object="${ticket}"
+										th:action="@{/tickets/updateStatus/{id}( id = ${ticket.id})}"
+										method="POST"
+									
+									>
+										<div class="visually-hidden">
+											<input type="text" value="prova status" class="form-control" id="statusHeader" th:field="*{ticketHeader}"  readonly>
+											<input class="form-control" id="statusBody" th:field="*{ticketBody}"  readonly>
+											<input type="datetime" class="form-control" id="statusCreatedAt" th:field="*{createdAt}"  readonly>
+											<input  class="form-control" id="statusCategories" th:field="*{categories}"  readonly>
+											<input id="statusStatus" th:field="*{ticketStatus}"  readonly >
+										</div>
+										
+								        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								        <button type="submit" class="btn btn-primary">Update status</button>
+									</form>
+							      </div>
+							    </div>
+							  </div>
+							</div>
 						</div>
 					</div>
+					
+					<!-- Section for display the ticket categories -->
 					<div class="mb-3">
 						<span class="fw-4">Categories: </span> 
 						<span class="badge text-bg-warning mx-1 " th:each="category : *{categories}">[[${category.name}]]</span>
 					</div>
 					
-
+					<!-- Section for display and update the ticket fields -->
+					<!-- Ticket body -->
 					<div class="border bg-white rounded p-1 mb-3 ">
 				    	<p class="p-1">[[*{ticketBody}]]</p>
 					</div>
 					
+					<!-- Ticket creation and update dates-->
 					<p class="p-1 text-secondary">Creted at: [[*{createdAt}]]</p>
 					<p class="p-1 text-secondary">Updated at: [[*{createdAt}]] </p>
-					
+
+					<!-- Link to the edit page -->
 					<div class=" mb-3">
 						<a class="btn btn-primary " th:href="@{/tickets/edit/{id}(id=${ticket.id})}">Edit</a>
 					</div>
@@ -79,12 +121,14 @@
 						
 					</th:block>
 					
+					<!-- This button trigger a collapse section contained in the note creation form -->
 					<p class="mt-1">
 						<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#createNoteCollapse" aria-expanded="false" aria-controls="createNoteCollapse">
 					    Create a new note
 						</button>
 				 	</p>
-					
+
+					<!-- Note creation form -->
 					<form
 						id="form-note"
 						th:object="${note}"
@@ -127,6 +171,7 @@
 					  
 					  </form>
 					  
+					 <!--Scripts links -->
 					<div class="d-flex justify-content-end mb-5">
 						<a class="btn btn-primary " th:href="@{/tickets}">Back</a>
 					</div>
