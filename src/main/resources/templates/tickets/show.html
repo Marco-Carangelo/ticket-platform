@@ -32,8 +32,9 @@
 					    	<h6 class=" mb-3 text-body-secondary">Opened by username</h6>
 						</div>
 						
-						<div th:class="'d-flex align-items-center justify-content-center flex-fill rounded border ' + ${bgColor} + ' ' + ${borderColor}">
-							<h5>Status: <span th:class="'badge ms-3 ' + ${badgeColor}">[[*{ticketStatus}]]</span></h5>
+						<div th:class="'d-flex flex-column  flex-fill rounded border ' + ${bgColor} + ' ' + ${borderColor}">
+							<h5 class="py-2 align-self-center">Status: <span th:class="'badge ms-3 ' + ${badgeColor}">[[*{ticketStatus}]]</span></h5>
+							<button type="button" class="btn btn-link">Update ticket status</button>
 						</div>
 					</div>
 					<div class="mb-3">
