@@ -78,8 +78,9 @@
 						
 						<!--Hidden fields-->
 						<div class="visually-hidden">
-							<input type="datetime" class="form-control" id="createdAt" th:field="*{createdAt}">
-							<input  class="form-control" id="statusCategories" th:field="*{categories}"  readonly>
+							<input type="datetime" class="form-control" id="createdAt" th:field="*{createdAt}" readonly>
+							<input  class="form-control" id="ticketCategories" th:field="*{categories}"  readonly>
+							<input  class="form-control" id="ticketOperator" th:field="*{operator.id}"  readonly>
 							
 						</div>
 						
