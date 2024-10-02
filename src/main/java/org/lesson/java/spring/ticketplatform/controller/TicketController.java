@@ -149,9 +149,9 @@ public class TicketController {
 			RedirectAttributes attributes) {
 		
 		if(formTicket.getTicketStatus() == Status.OPEN) {
-			formTicket.setTicketStatus(Status.ASSIGNED);
+			formTicket.setTicketStatus(Status.IN_PROGRESS);
 		}else {
-			if(formTicket.getTicketStatus() == Status.ASSIGNED) {
+			if(formTicket.getTicketStatus() == Status.IN_PROGRESS) {
 				formTicket.setTicketStatus(Status.CLOSED);
 			}
 		}
@@ -177,7 +177,7 @@ public class TicketController {
 					attributes.put("borderColor","border-info");
 	
 					break;
-				case ASSIGNED :
+				case IN_PROGRESS :
 					attributes.put("badgeColor","text-bg-warning");
 					attributes.put("bgColor","bg-warning-subtle");
 					attributes.put("borderColor","border-warning");

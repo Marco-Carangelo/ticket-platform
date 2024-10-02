@@ -209,7 +209,7 @@ public class Ticket {
 	//Enum object with the possible status of a ticket
 	public enum Status{
 		OPEN,
-		ASSIGNED,
+		IN_PROGRESS,
 		CLOSED
 	}
 
