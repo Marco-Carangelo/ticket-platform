@@ -141,6 +141,30 @@ public class TicketController {
 		return "redirect:/tickets";
 	}
 	
+	@PostMapping("/updateStatus/{id}")
+	public String updateStatus(
+			@PathVariable("id") Integer id,
+			@ModelAttribute("ticket") Ticket formTicket,
+			Model model,
+			RedirectAttributes attributes) {
+		
+		if(formTicket.getTicketStatus() == Status.OPEN) {
+			formTicket.setTicketStatus(Status.ASSIGNED);
+		}else {
+			if(formTicket.getTicketStatus() == Status.ASSIGNED) {
+				formTicket.setTicketStatus(Status.CLOSED);
+			}
+		}
+		
+		formTicket.setUpdatedAt(LocalDateTime.now());
+		ticketService.updateTicket(formTicket);
+		
+//		attributes.addFlashAttribute("message","The ticket " + formTicket.getTicketHeader() + " has been updated successfully");
+//		attributes.addFlashAttribute("alertClass", "alert-success" );
+		return "redirect:/tickets/" + id;
+	}
+	
+	
 	//Utility classes
 		private HashMap<String, String> setStatusColor(Status status) {
 			
