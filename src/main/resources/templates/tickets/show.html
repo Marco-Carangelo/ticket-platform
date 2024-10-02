@@ -26,11 +26,15 @@
 			
 			<!--Section with object details -->
 				<div class="row col-10 border-bottom border-2 mb-2  pt-2 rounded"  th:object="${ticket}" >
-				  <div class="d-flex ">
+				  <div class="d-flex border-bottom mb-3 pb-3">
 						<div class="col-7">
 							<h5 class=" mb-2">[[*{ticketHeader}]]</h5>
 					    	<h6 class=" mb-3 text-body-secondary">Opened by username</h6>
+							<!-- Operator working on the ticket -->			
+							<h5>Assigned to the operator: <span class="fst-italic">[[*{operator.name}]] [[*{operator.surname}]]</span></h5>
+												
 						</div>
+						
 						
 						<!-- Section for display and update the ticket status -->
 						<div th:class="'d-flex flex-column  flex-fill rounded border ' + ${bgColor} + ' ' + ${borderColor}">
@@ -89,11 +93,6 @@
 					</div>
 					
 					<!-- Section for display and update the ticket fields -->
-					<!-- Operator working on the ticket -->
-					<div class=" mb-3 ">
-				    	<h5>Assigned to the operator: <span class="fst-italic">[[*{operator.name}]] [[*{operator.surname}]]</span></h5>
-					</div>
-					
 					<!-- Ticket body -->
 					<div class="border bg-white rounded p-1 mb-3 ">
 				    	<p class="p-1">[[*{ticketBody}]]</p>
