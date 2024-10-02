@@ -50,6 +50,7 @@
 								</ul>
 							</div>
 						</div>
+						
 						<!--Form section for ticket body -->
 						<div class="mb-4">
 						  <label for="ticketBody" class="form-label">Insert here your request</label>
@@ -60,6 +61,21 @@
 		  							<li class="alert alert-danger" th:each="err : ${#fields.errors('ticketBody')}" th:text="${err}"></li>
 		  						</ul>
 		  					</div>
+						</div>
+						
+						<!--Form section to select operator -->
+						<div class="mb-4">
+						  <label for="ticketOperator" class="form-label">Select one active operator to assign the ticket</label>
+						  <select class="form-select" id="ticketOperator" multiple aria-label="Multiple select example" th:field="*{operator.id}">
+						    <option th:each="selectOperator : ${activeOperators}" th:value="${selectOperator.id}">[[${selectOperator.name}]] [[${selectOperator.surname}]]</option>
+						  </select>
+						  
+						  <div th:if="${#fields.hasErrors('operator.id')}" class="invalid-feedback d-block">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('operator.id')}" th:text="${err}"></li>
+								</ul>
+							</div>
+						 
 						</div>
 						
 						<!--Submit, Reset and Back buttons -->
