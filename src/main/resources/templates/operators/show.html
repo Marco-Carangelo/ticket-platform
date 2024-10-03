@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<!--Head section incorporated by fragment-->
+<head th:insert="elements/fragments :: head"> </head>
+		
+<body class="bg-secondary">
+	
+	<!--HEADER WITH NAVBAR -->
+	<header th:replace="elements/navbar :: header('tickets')"></header>
+	
+	<!--START OF THE MAIN SECTION -->
+	<main >
+
+		<!--Container of the main section -->
+				<div class="container-lg  bg-light rounded   ">
+					<div class="row ">
+						
+						<!--Main title of the page -->
+					    <div class="col-12 text-center py-3 ">
+					      <h1>Welcome [[${operator.name}]]</h1>
+					    </div>
+						
+						<div>
+							
+							
+						</div>
+						
+										
+							
+						</div>
+						
+<!--						<th:block th:if="${message != null}">-->
+<!--							<div th:replace="elements/fragments :: messAlert(${message} , ${alertClass})"></div>-->
+<!--						</th:block>-->
+						
+						<!--Table with ticket objects list -->
+						<!--The table is showed only if there is at least one element to show -->
+						<div class="d-flex justify-content-center mb-5" th:if="${operator.tickets.size > 0}">
+							<table class="table w-75 table-striped table-hover ">
+							  <thead>
+							    <tr>
+							      <th scope="col">#</th>
+							      <th scope="col">Header</th>
+							      <th scope="col">Status</th>
+							      <th scope="col">Creation date</th>
+								  <th scope="col">Update Date</th>
+								 
+								  <th class="button-headers"></th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr th:each="ticket: ${operator.tickets}" th:object="${ticket}">
+							      <td>[[*{id}]]</td>
+							      <td>[[*{ticketHeader}]]</td>
+								  <td><span class="badge text-bg-info">[[*{ticketStatus}]]</span></td>
+							      <td>[[*{createdAt}]]</td>
+							      <td>[[*{updatedAt}]]</td>
+						
+								  <td class>
+									<!-- Button linked to show page -->
+									<a class="btn btn-sm btn-primary" th:href="@{/tickets/{id}(id=${ticket.id})}">
+										Show
+									</a>
+								
+								  </td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+						
+						
+						<!--SHOWED ONLY IF THERE ARE NO TICKET OBJECTS TO SHOW -->
+						<div th:unless="${operator.tickets.size > 0}">
+							<h2 class="text-danger text-center">There are no tickets to be shown</h2>
+						</div>
+					   
+					  </div>
+				</div>
+	</main>
+	<!--END OF THE MAIN SECTION -->
+	
+	<!--FOOTER -->
+<!--	<footer th:replace="elements/fragments :: footer" ></footer>-->
+
+	<!--Scripts links -->
+	<div th:insert="elements/fragments :: scripts">
+	</div>
+		
+</body>
+</html>
