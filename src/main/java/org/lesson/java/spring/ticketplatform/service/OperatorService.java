@@ -18,6 +18,12 @@ public class OperatorService {
 		return repository.findByInactiveFalse();
 	}
 	
+	public Operator getOperatorByUserId(Integer userId) {
+		
+		return repository.findByUser(userId);
+		
+	}
+	
 	
 
 }
