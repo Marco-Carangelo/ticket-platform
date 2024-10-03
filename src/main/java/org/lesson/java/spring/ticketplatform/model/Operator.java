@@ -22,16 +22,6 @@ public class Operator {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Size(min = 2, max = 50)
-	@NotBlank
-	@Column
-	private String name;
-	
-	@Size(min = 2, max = 50)
-	@NotBlank
-	@Column
-	private String surname;
 
 	@NotNull
 	@Column
@@ -50,22 +40,6 @@ public class Operator {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
 	}
 
 	public boolean isInactive() {

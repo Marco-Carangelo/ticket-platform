@@ -2,11 +2,14 @@ package org.lesson.java.spring.ticketplatform.model;
 
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -22,6 +25,16 @@ public class User {
 	
 	@NotNull
 	private String email;
+	
+	@Size(min = 2, max = 50)
+	@NotBlank
+	@Column
+	private String name;
+	
+	@Size(min = 2, max = 50)
+	@NotBlank
+	@Column
+	private String surname;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
@@ -65,6 +78,22 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 	
 	
