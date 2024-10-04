@@ -67,7 +67,7 @@
 						<div class="mb-4">
 						  <label for="ticketOperator" class="form-label">Select one active operator to assign the ticket</label>
 						  <select class="form-select" id="ticketOperator" multiple aria-label="Multiple select example" th:field="*{operator.id}">
-						    <option th:each="selectOperator : ${activeOperators}" th:value="${selectOperator.id}">[[${selectOperator.name}]] [[${selectOperator.surname}]]</option>
+						    <option th:each="selectOperator : ${activeOperators}" th:value="${selectOperator.id}">[[${selectOperator.user.name}]] [[${selectOperator.user.surname}]]</option>
 						  </select>
 						  
 						  <div th:if="${#fields.hasErrors('operator.id')}" class="invalid-feedback d-block">
