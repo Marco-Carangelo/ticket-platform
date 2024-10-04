@@ -38,7 +38,7 @@ public class User {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
-
+	
 	public Integer getId() {
 		return id;
 	}
