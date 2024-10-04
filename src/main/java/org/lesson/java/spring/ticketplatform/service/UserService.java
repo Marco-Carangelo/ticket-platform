@@ -17,5 +17,10 @@ public class UserService {
 		
 		return repository.findById(id);
 	}
+	
+	public User updateUser(User user) {
+		
+		return repository.save(user);
+	}
 
 }
