@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<!--Head section incorporated by fragment-->
+<head th:insert="elements/fragments :: head"> </head>
+		
+<body class="bg-secondary">
+	
+	<!--HEADER WITH NAVBAR -->
+	<header th:replace="elements/navbar :: header('tickets')"></header>
+	
+	<!--START OF THE MAIN SECTION -->
+	<main>
+		
+		<!--Container of the main section -->
+		<div class="container-lg  bg-light rounded  ">
+			<div class="row justify-content-center ">
+				
+			<!--Main title of the page -->
+		    <div class="col-12 text-start py-3 mb-2 ">
+		      <h1>Edit the user: <span class="fst-italic fw-light fs-2">[[${user.username}]]</span></h1>
+		    </div>
+			
+			
+			<!--Section with form -->
+
+				<div class="row col-10" >
+					
+					<form
+						id="form-ticket"
+						th:object="${user}"
+						th:action="@{/users/edit/{id}( id = ${user.id})}"
+						method="POST"
+					>
+					
+						<!--Form section for user username-->
+						<div class="mb-4">
+						  <label for="username" class="form-label">Username</label>
+						  <input type="text" class="form-control" id="username" 
+						  placeholder="Insert your username" th:field="*{username}">
+						  
+							 <div th:if="${#fields.hasErrors('username')}" class="invalid-feedback d-block">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('username')}" th:text="${err}"></li>
+								</ul>
+							</div>
+						</div>
+						<!--Form section for user email-->
+						<div class="mb-4">
+						  <label for="email" class="form-label">Email</label>
+						  <input type="email" class="form-control" id="email" 
+						  placeholder="Insert your email" th:field="*{email}">
+						  
+							 <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback d-block">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--Form section for user name and surname -->
+						<div class="mb-4">
+						  <label for="name" class="form-label">First name</label>
+						  <input type="text" class="form-control" id="name" 
+						  placeholder="Insert your first name" th:field="*{name}">
+						  
+							 <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback d-block">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+								</ul>
+							</div>
+						</div>
+						
+						<div class="mb-4">
+						  <label for="surname" class="form-label">Last name</label>
+						  <input type="text" class="form-control" id="name" 
+						  placeholder="Insert your last name" th:field="*{surname}">
+						  
+							 <div th:if="${#fields.hasErrors('surname')}" class="invalid-feedback d-block">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('surname')}" th:text="${err}"></li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--Hidden fields-->
+<!--						<div class="visually-hidden">-->
+<!--							<input type="datetime" class="form-control" id="createdAt" th:field="*{createdAt}" readonly>-->
+<!--							<input  class="form-control" id="ticketCategories" th:field="*{categories}"  readonly>-->
+<!--							<input  class="form-control" id="ticketOperator" th:field="*{operator.id}"  readonly>-->
+							
+<!--						</div>-->
+						
+						<!--Submit, Reset and Back buttons -->
+						
+						<div class="d-flex mb-5">
+							<button type="submit" class="btn btn-primary p-2 mx-1">Submit</button>
+							<button type="reset" class="btn btn-danger p-2 mx-1">Reset</button>
+							<a class="btn btn-primary p-2 ms-auto mx-1" th:href="@{/operator/{id}( id = ${user.id})}">Back</a>
+						</div>
+						
+					</form>
+				  
+				</div>
+
+			</div>
+			
+			
+		
+		   
+		  </div>
+		
+
+	</main>
+	<!--END OF THE MAIN SECTION -->
+	
+	<!--FOOTER -->
+<!--	<footer th:replace="elements/fragments :: footer" ></footer>-->
+
+	<!--Scripts links -->
+	<div th:insert="elements/fragments :: scripts">
+	</div>
+		
+</body>
+</html>
