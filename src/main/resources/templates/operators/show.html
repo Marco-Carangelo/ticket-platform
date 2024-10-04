@@ -14,70 +14,88 @@
 	<main >
 
 		<!--Container of the main section -->
-				<div class="container-lg  bg-light rounded   ">
-					<div class="row ">
-						
-						<!--Main title of the page -->
-					    <div class="col-12 text-center py-3 ">
-					      <h1>Welcome [[${operator.name}]]</h1>
-					    </div>
-						
-						<div>
-							
-							
-						</div>
-						
-										
-							
-						</div>
-						
-<!--						<th:block th:if="${message != null}">-->
-<!--							<div th:replace="elements/fragments :: messAlert(${message} , ${alertClass})"></div>-->
-<!--						</th:block>-->
-						
-						<!--Table with ticket objects list -->
-						<!--The table is showed only if there is at least one element to show -->
-						<div class="d-flex justify-content-center mb-5" th:if="${operator.tickets.size > 0}">
-							<table class="table w-75 table-striped table-hover ">
-							  <thead>
-							    <tr>
-							      <th scope="col">#</th>
-							      <th scope="col">Header</th>
-							      <th scope="col">Status</th>
-							      <th scope="col">Creation date</th>
-								  <th scope="col">Update Date</th>
-								 
-								  <th class="button-headers"></th>
-							    </tr>
-							  </thead>
-							  <tbody>
-							    <tr th:each="ticket: ${operator.tickets}" th:object="${ticket}">
-							      <td>[[*{id}]]</td>
-							      <td>[[*{ticketHeader}]]</td>
-								  <td><span class="badge text-bg-info">[[*{ticketStatus}]]</span></td>
-							      <td>[[*{createdAt}]]</td>
-							      <td>[[*{updatedAt}]]</td>
-						
-								  <td class>
-									<!-- Button linked to show page -->
-									<a class="btn btn-sm btn-primary" th:href="@{/tickets/{id}(id=${ticket.id})}">
-										Show
-									</a>
-								
-								  </td>
-							    </tr>
-							  </tbody>
-							</table>
-						</div>
-						
-						
-						<!--SHOWED ONLY IF THERE ARE NO TICKET OBJECTS TO SHOW -->
-						<div th:unless="${operator.tickets.size > 0}">
-							<h2 class="text-danger text-center">There are no tickets to be shown</h2>
-						</div>
-					   
-					  </div>
+		<div class="container-lg  bg-light rounded   ">
+			<div class="row border-bottom mb-3 ">
+				
+				<!--Main title of the page -->
+			    <div class="col-12 text-center py-3 mb-3 ">
+			      <h1>Welcome [[${operator.user.name}]]</h1>
+			    </div>
+				<div  class="mb-3 ms-5">
+					<h4>Status: 
+						<span class=" badge text-bg-success " th:unless="${operator.inactive}">Available</span>
+						<span class=" badge text-bg-danger " th:if="${operator.inactive}">Not Available</span>
+					</h4>
+				</div> 
+				<div  class=" text-center mb-3">
+					<h4>List of the assigned tickets:</h4>
 				</div>
+					
+				
+				<!--Table with ticket objects list -->
+				<!--The table is showed only if there is at least one element to show -->
+				<div class="d-flex justify-content-center mb-5" th:if="${operator.tickets.size > 0}">
+					
+					<table class="table w-75 table-striped table-hover ">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Header</th>
+					      <th scope="col">Status</th>
+					      <th scope="col">Creation date</th>
+						  <th scope="col">Update Date</th>
+						 
+						  <th class="button-headers"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="ticket: ${operator.tickets}" th:object="${ticket}">
+					      <td>[[*{id}]]</td>
+					      <td>[[*{ticketHeader}]]</td>
+						  <td><span class="badge text-bg-info">[[*{ticketStatus}]]</span></td>
+					      <td>[[*{createdAt}]]</td>
+					      <td>[[*{updatedAt}]]</td>
+				
+						  <td class>
+							<!-- Button linked to show page -->
+							<a class="btn btn-sm btn-primary" th:href="@{/tickets/{id}(id=${ticket.id})}">
+								Show
+							</a>
+						
+						  </td>
+					    </tr>
+					  </tbody>
+					</table>
+					
+				</div>
+				
+				
+				<!--SHOWED ONLY IF THERE ARE NO TICKET OBJECTS TO SHOW -->
+				<div th:unless="${operator.tickets.size > 0}">
+					<h2 class="text-danger text-center">There are no tickets to be shown</h2>
+				</div>
+			   
+			</div>
+			  
+			<div class="row d-flex justify-content-center">
+				
+  				<h4 class="text-center mb-3 ">Operator details:</h4>
+				
+				<div th:object="${operator}" class="col-6 text-start mb-3">
+					<ul class="list-group list-group-flush">
+					  <li class="list-group-item d-flex justify-content-between"><strong>Username:</strong><span>[[*{user.username}]]</span></li>
+					  <li class="list-group-item d-flex justify-content-between"><strong>Email:</strong><span>[[*{user.email}]]</span></li>
+					  <li class="list-group-item d-flex justify-content-between"><strong>Name:</strong><span>[[*{user.name}]]</span></li>
+					  <li class="list-group-item d-flex justify-content-between"><strong>Surname:</strong><span>[[*{user.surname}]]</span></li>
+					</ul>
+				</div>	
+					
+	  				
+					
+	  			
+	  		</div>  
+		</div>
+				
 	</main>
 	<!--END OF THE MAIN SECTION -->
 	
