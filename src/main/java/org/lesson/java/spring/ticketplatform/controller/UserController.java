@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 	
 	
@@ -32,7 +32,7 @@ public class UserController {
 	public String edit(Model model, @PathVariable("id") Integer id) {
 		
 		Optional<User> user = userService.findUserById(id);
-		model.addAttribute("user", user);
+		model.addAttribute("user", user.get());
 		
 		return "/users/edit";
 		
@@ -47,6 +47,7 @@ public class UserController {
 			RedirectAttributes attributes) {
 		
 		if(bindingResult.hasErrors()) {
+			System.out.println(bindingResult.toString());
 			return "/users/edit";
 		}
 		
