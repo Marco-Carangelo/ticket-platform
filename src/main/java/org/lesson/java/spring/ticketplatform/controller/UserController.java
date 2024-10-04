@@ -3,9 +3,7 @@ package org.lesson.java.spring.ticketplatform.controller;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.model.User;
-import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +39,22 @@ public class UserController {
 	}
 	
 
-	
+	@PostMapping("/edit/{id}")
+	public String update(
+			@Valid @ModelAttribute("user") User formUser,
+			BindingResult bindingResult,
+			Model model,
+			RedirectAttributes attributes) {
+		
+		if(bindingResult.hasErrors()) {
+			return "/users/edit";
+		}
+		
+		userService.updateUser(formUser);
+		
+		attributes.addFlashAttribute("message","The user " + formUser.getUsername() + " has been updated successfully");
+		attributes.addFlashAttribute("alertClass", "alert-success" );
+		return "redirect:/operators/" + formUser.getId();
+	}
 
 }
