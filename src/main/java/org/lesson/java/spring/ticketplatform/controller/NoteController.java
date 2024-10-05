@@ -52,8 +52,9 @@ public class NoteController {
 			Authentication authentication) {
 		
 		formNote.setCreatedAt(LocalDateTime.now());
-		//Populate the author field
+		//Set the author name
 		formNote.setAuthor(authentication.getName());
+		
 		int ticketId = formNote.getTicket().getId();
 		
 		if(bindingResult.hasErrors()) {
@@ -62,7 +63,6 @@ public class NoteController {
 			model.addAttribute("ticket", ticket );
 			return "/tickets/show"  ;
 		}
-		
 		
 		
 		noteService.createNote(formNote);
