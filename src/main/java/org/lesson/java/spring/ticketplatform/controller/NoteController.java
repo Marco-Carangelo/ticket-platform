@@ -52,9 +52,8 @@ public class NoteController {
 			Authentication authentication) {
 		
 		formNote.setCreatedAt(LocalDateTime.now());
-		//Temporary setting a string for the author of the notes
-		formNote.setAuthor("Temp Author");
-		
+		//Populate the author field
+		formNote.setAuthor(authentication.getName());
 		int ticketId = formNote.getTicket().getId();
 		
 		if(bindingResult.hasErrors()) {
@@ -64,8 +63,7 @@ public class NoteController {
 			return "/tickets/show"  ;
 		}
 		
-		//Populate the author field
-		formNote.setAuthor(authentication.getName());
+		
 		
 		noteService.createNote(formNote);
 		
