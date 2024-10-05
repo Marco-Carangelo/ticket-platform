@@ -21,11 +21,16 @@
 			    <div class="col-12 text-center py-3 mb-3 ">
 			      <h1>Welcome [[${operator.user.name}]]</h1>
 			    </div>
-				<div  class="mb-3 ms-5">
+				<div  class=" mb-3 d-flex col-9 m-auto justify-content-between">
 					<h4>Status: 
 						<span class=" badge text-bg-success " th:unless="${operator.inactive}">Available</span>
 						<span class=" badge text-bg-danger " th:if="${operator.inactive}">Not Available</span>
 					</h4>
+					
+					<a class="btn btn-warning ">
+						<span th:unless="${operator.inactive}">Set status not available</span>
+						<span th:if="${operator.inactive}">Set status Available</span>
+					 </a>
 				</div> 
 				<div  class=" text-center mb-3">
 					<h4>List of the assigned tickets:</h4>
@@ -81,7 +86,7 @@
 				
   				<h4 class="text-center mb-3 ">Operator details:</h4>
 				
-				<div th:object="${operator}" class="col-6 text-start mb-3">
+				<div th:object="${operator}" class="col-6  mb-3">
 					<ul class="list-group list-group-flush">
 					  <li class="list-group-item d-flex justify-content-between"><strong>Username:</strong><span>[[*{user.username}]]</span></li>
 					  <li class="list-group-item d-flex justify-content-between"><strong>Email:</strong><span>[[*{user.email}]]</span></li>
@@ -89,6 +94,11 @@
 					  <li class="list-group-item d-flex justify-content-between"><strong>Surname:</strong><span>[[*{user.surname}]]</span></li>
 					</ul>
 				</div>	
+				
+				<div class="col-8 mb-3">
+					<a class="btn btn-primary" th:href="@{/users/edit/{id}( id = ${operator.user.id})}">Update user info</a>
+				</div>
+				
 					
 	  				
 					
