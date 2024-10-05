@@ -1,9 +1,13 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
+import org.lesson.java.spring.ticketplatform.model.Role;
 import org.lesson.java.spring.ticketplatform.model.User;
+import org.lesson.java.spring.ticketplatform.service.RoleService;
 import org.lesson.java.spring.ticketplatform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	// Update method
 	
@@ -50,6 +57,11 @@ public class UserController {
 			System.out.println(bindingResult.toString());
 			return "/users/edit";
 		}
+		
+		//Set the OPERATOR role again for this user
+		Set<Role> roles = new HashSet<Role>();
+		roles.add(roleService.findRoleByName("OPERATOR"));
+		formUser.setRoles(roles);
 		
 		userService.updateUser(formUser);
 		
