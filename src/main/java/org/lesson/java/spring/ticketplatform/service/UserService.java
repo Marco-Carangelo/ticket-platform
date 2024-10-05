@@ -22,5 +22,10 @@ public class UserService {
 		
 		return repository.save(user);
 	}
+	
+	public Optional<User> findUserByUsarname(String username) {
+		
+		return repository.findByUsername(username);
+	}
 
 }
