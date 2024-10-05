@@ -8,6 +8,7 @@ import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.service.NoteService;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,7 +48,8 @@ public class NoteController {
 			@Valid @ModelAttribute("note") Note formNote,
 			BindingResult bindingResult,
 			Model model,
-			RedirectAttributes attributes ) {
+			RedirectAttributes attributes,
+			Authentication authentication) {
 		
 		formNote.setCreatedAt(LocalDateTime.now());
 		//Temporary setting a string for the author of the notes
@@ -62,6 +64,8 @@ public class NoteController {
 			return "/tickets/show"  ;
 		}
 		
+		//Populate the author field
+		formNote.setAuthor(authentication.getName());
 		
 		noteService.createNote(formNote);
 		
