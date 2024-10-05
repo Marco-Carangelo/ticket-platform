@@ -26,7 +26,7 @@ public class Note {
 		@Size(min = 2, max = 50)
 		@NotBlank
 		@Column
-		private String author;
+		private String author = "author";
 		
 		@Size(min = 10, max = 500)
 		@NotBlank
