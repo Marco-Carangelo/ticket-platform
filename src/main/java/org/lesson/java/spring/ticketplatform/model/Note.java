@@ -35,7 +35,7 @@ public class Note {
 		
 		@NotNull
 		@Column
-		private LocalDateTime createdAt;
+		private LocalDateTime createdAt = LocalDateTime.now();
 		
 		@ManyToOne
 		@JoinColumn(name="ticket_id", nullable=false)
