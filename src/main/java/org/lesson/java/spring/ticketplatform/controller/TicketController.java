@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.lesson.java.spring.ticketplatform.model.Note;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
+import org.lesson.java.spring.ticketplatform.service.CategoryService;
 import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class TicketController {
 	
 	@Autowired
 	private OperatorService operatorService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	
 	// Index method
@@ -74,6 +78,8 @@ public class TicketController {
 		
 		Ticket ticket = new Ticket();
 		model.addAttribute("ticket", ticket);
+		
+		model.addAttribute("categoryList", categoryService.findCategories());
 		
 		//Add a list of active operators to the model
 		model.addAttribute("activeOperators", operatorService.findActiveOperators());
