@@ -1,5 +1,11 @@
 package org.lesson.java.spring.ticketplatform.repository;
 
-public interface RoleRepository extends JpaRepository<> {
+import org.lesson.java.spring.ticketplatform.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoleRepository extends JpaRepository<Role, Integer > {
+	
+	public Role findByName(String role);
+	
 
 }
