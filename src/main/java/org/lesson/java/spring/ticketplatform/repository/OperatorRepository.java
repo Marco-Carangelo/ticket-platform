@@ -1,7 +1,5 @@
 package org.lesson.java.spring.ticketplatform.repository;
 
-import java.util.List;
-
 import org.lesson.java.spring.ticketplatform.model.Operator;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
