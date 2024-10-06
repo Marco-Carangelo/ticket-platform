@@ -2,6 +2,7 @@ package org.lesson.java.spring.ticketplatform.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.SQLRestriction;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +34,17 @@ public class Operator {
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+
+	@Formula("(SELECT count(t.id) " +
+			"from  operators o " +
+			"inner join tickets t " +
+			"on t.operator_id = o.id " +
+			"where t.ticket_status <> 'CLOSED' " +
+			"and o.id = id )"
+			)
+	private Integer ticketsToClose;
+	
 
 	public Integer getId() {
 		return id;
@@ -65,6 +77,12 @@ public class Operator {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public int getTicketsToClose() {
+		return ticketsToClose;
+	}
+
+
 	
 	
 	
