@@ -2,10 +2,13 @@ package org.lesson.java.spring.ticketplatform.controller;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 
+import org.hibernate.annotations.Formula;
 import org.lesson.java.spring.ticketplatform.model.Note;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
+import org.lesson.java.spring.ticketplatform.model.User;
 import org.lesson.java.spring.ticketplatform.service.CategoryService;
 import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
@@ -29,6 +32,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/tickets")
 public class TicketController {
+
 	
 	@Autowired
 	private TicketService ticketService;
@@ -94,8 +98,7 @@ public class TicketController {
 		model.addAttribute("categoryList", categoryService.findCategories());
 		
 		//Add a list of active operators to the model
-		model.addAttribute("activeOperators", operatorService.findActiveOperators());
-		
+		model.addAttribute("activeOperators", operatorService.findOperators());
 		return "/tickets/create";
 		
 	}
