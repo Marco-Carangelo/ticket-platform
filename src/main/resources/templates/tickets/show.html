@@ -182,10 +182,10 @@
 					  
 					  </form>
 					  
-					 <!--Scripts links -->
+					 <!--Back button. If the current user is an ADIMIN show the button to the tickets index, if is an OPERATOR show the button to his page -->
 					<div class="d-flex justify-content-end mb-5">
 						<a class="btn btn-primary " th:href="@{/tickets}"  sec:authorize="hasAuthority('ADMIN')">Back</a>
-						<a class="btn btn-primary " th:href="@{/operator/}"  sec:authorize="hasAuthority('OPERATOR')">Back</a>
+						<a class="btn btn-primary " th:href="@{/operators/{id}( id = ${currentUserId})}"  sec:authorize="hasAuthority('OPERATOR')">Back</a>
 					</div>
 				  
 				</div>
