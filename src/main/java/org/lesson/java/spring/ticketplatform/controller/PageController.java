@@ -1,5 +1,7 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.lesson.java.spring.ticketplatform.model.Operator;
@@ -9,6 +11,7 @@ import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,13 +31,12 @@ public class PageController {
 	@GetMapping
 	public String home(Authentication authentication, Model model) {
 		
-		//Get the roles of the current user
-		Set<Role> roles = getCurrentUser( authentication).getRoles();
-	
+		//Retrieve the user authorities
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		
 		//Search if the current user have the ADMIN authority, if is found redirect to the admin dashboard
-		for(Role r : roles ) {
-			if (r.getName().equals("ADMIN"))
+		for(GrantedAuthority a : authorities ) {
+			if (a.toString().equals("ADMIN"))
 				return "redirect:/tickets";
 		}
 		
@@ -44,8 +46,6 @@ public class PageController {
 	}
 	
 	
-	
-
 	@GetMapping("/operators/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
 		
