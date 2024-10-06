@@ -184,7 +184,8 @@
 					  
 					 <!--Scripts links -->
 					<div class="d-flex justify-content-end mb-5">
-						<a class="btn btn-primary " th:href="@{/tickets}">Back</a>
+						<a class="btn btn-primary " th:href="@{/tickets}"  sec:authorize="hasAuthority('ADMIN')">Back</a>
+						<a class="btn btn-primary " th:href="@{/operator/}"  sec:authorize="hasAuthority('OPERATOR')">Back</a>
 					</div>
 				  
 				</div>

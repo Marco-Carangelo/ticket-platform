@@ -28,17 +28,18 @@ public class PageController {
 	@GetMapping
 	public String home(Authentication authentication, Model model) {
 		
-		String username = authentication.getName();
-		User user = userService.findUserByUsarname(username).get(); 
-		Set<Role> roles = user.getRoles();
+		//Get the roles of the current user
+		Set<Role> roles = getCurrentUser( authentication).getRoles();
+	
 		
-		
+		//Search if the current user have the ADMIN authority, if is found redirect to the admin dashboard
 		for(Role r : roles ) {
 			if (r.getName().equals("ADMIN"))
 				return "redirect:/tickets";
 		}
 		
-		return "redirect:/operators/" + user.getId();
+		//If ADMIN authority is not found the user is redirected to the specific operator page
+		return "redirect:/operators/" + getCurrentUser( authentication).getId();
 	
 	}
 	
@@ -54,5 +55,15 @@ public class PageController {
 		
 		return "/operators/show";
 	}
+	
+	
+	//Method to get the currently logged user entity
+	public User getCurrentUser(Authentication authentication){
+		
+		String username = authentication.getName();
+		return userService.findUserByUsarname(username).get(); 
+	}
+	
+	
 
 }
