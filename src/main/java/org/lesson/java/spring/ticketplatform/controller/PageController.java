@@ -1,14 +1,11 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-
 import org.lesson.java.spring.ticketplatform.model.Operator;
-import org.lesson.java.spring.ticketplatform.model.Role;
 import org.lesson.java.spring.ticketplatform.model.User;
 import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.UserService;
+import org.lesson.java.spring.ticketplatform.utils.AuthenticationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -41,7 +38,7 @@ public class PageController {
 		}
 		
 		//If ADMIN authority is not found the user is redirected to the specific operator page
-		return "redirect:/operators/" + getCurrentUser( authentication).getId();
+		return "redirect:/operators/" + AuthenticationUtil.getCurrentUser(authentication, userService).getId();
 	
 	}
 	
@@ -57,12 +54,7 @@ public class PageController {
 	}
 	
 	
-	//Method to get the currently logged user entity
-	public User getCurrentUser(Authentication authentication){
-		
-		String username = authentication.getName();
-		return userService.findUserByUsarname(username).get(); 
-	}
+
 	
 	
 
