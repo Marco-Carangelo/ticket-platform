@@ -9,7 +9,10 @@ import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.service.CategoryService;
 import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
+import org.lesson.java.spring.ticketplatform.service.UserService;
+import org.lesson.java.spring.ticketplatform.utils.AuthenticationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,6 +39,9 @@ public class TicketController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private UserService userService;
+	
 	
 	// Index method
 	@GetMapping
@@ -54,7 +60,9 @@ public class TicketController {
 	
 	// Show method
 	@GetMapping("/{id}")
-	public String show(Model model, @PathVariable("id") Integer id) {
+	public String show(Model model,
+			@PathVariable("id") Integer id,
+			Authentication authentication) {
 		
 		Ticket ticket = ticketService.findTicketById(id);
 		model.addAttribute("ticket", ticket );
@@ -67,6 +75,10 @@ public class TicketController {
 		Note note = new Note();
 		note.setTicket(ticket);
 		model.addAttribute("note", note);
+		
+		//Adding to model the current user id
+		Integer currentUserId =  AuthenticationUtil.getCurrentUser(authentication, userService).getId();
+		model.addAttribute("currentUserId", currentUserId);
 		
 		return "/tickets/show";
 	}

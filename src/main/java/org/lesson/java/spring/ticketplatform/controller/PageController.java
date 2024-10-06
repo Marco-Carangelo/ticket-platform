@@ -2,7 +2,6 @@ package org.lesson.java.spring.ticketplatform.controller;
 
 import java.util.Collection;
 import org.lesson.java.spring.ticketplatform.model.Operator;
-import org.lesson.java.spring.ticketplatform.model.User;
 import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.UserService;
 import org.lesson.java.spring.ticketplatform.utils.AuthenticationUtil;
