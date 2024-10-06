@@ -41,7 +41,7 @@
 							<h5 class="py-2 align-self-center">Status: <span th:class="'badge ms-3 ' + ${badgeColor}">[[*{ticketStatus}]]</span></h5>
 							
 							<!-- Button that appear only iif the ticket status is not closed -->
-							<div th:unless="${ticket.ticketStatus.toString() == 'CLOSED'}" class="align-self-center" >
+							<div th:unless="${ticket.ticketStatus.toString() == 'CLOSED'}" class="align-self-center" sec:authorize="hasAuthority('OPERATOR')" >
 								<button type="button" class="btn btn-link " data-bs-toggle="modal" data-bs-target="#statusModal">Update ticket status</button>
 							
 							<!-- Modal -->
@@ -103,7 +103,7 @@
 					<p class="p-1 text-secondary">Updated at: [[*{updatedAt}]] </p>
 
 					<!-- Link to the edit page -->
-					<div class=" mb-3">
+					<div class=" mb-3" sec:authorize="hasAuthority('ADMIN')">
 						<a class="btn btn-primary " th:href="@{/tickets/edit/{id}(id=${ticket.id})}">Edit</a>
 					</div>
 				  
