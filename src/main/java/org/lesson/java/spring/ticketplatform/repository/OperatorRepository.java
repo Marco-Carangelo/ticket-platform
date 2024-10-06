@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface OperatorRepository extends JpaRepository<Operator , Integer>   {
 	
-	public List<Operator> findByInactiveFalse();
 	
 	@Query("FROM Operator o WHERE o.user.id = :userId")
 	public Operator findByUser(@Param("userId") Integer userId);
