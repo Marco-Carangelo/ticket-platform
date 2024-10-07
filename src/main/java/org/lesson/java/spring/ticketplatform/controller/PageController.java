@@ -71,6 +71,8 @@ public class PageController {
 		
 		model.addAttribute("operator", operator );
 		
+		operatorService.updateOperator(operator);
+		
 		return "/operators/show";
 	}
 			
