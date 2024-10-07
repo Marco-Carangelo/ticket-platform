@@ -29,5 +29,10 @@ public class OperatorService {
 		
 		return repository.findByInactiveFalse();
 	}
+	
+	public Operator updateOperator(Operator operator) {
+		
+		return repository.save(operator);
+	}
 
 }
