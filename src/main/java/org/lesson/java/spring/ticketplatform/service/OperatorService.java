@@ -25,6 +25,9 @@ public class OperatorService {
 		return repository.findAll();
 	}
 	
-	
+	public List<Operator> findActiveOperators(){
+		
+		return repository.findByInactiveFalse();
+	}
 
 }
