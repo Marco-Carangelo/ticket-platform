@@ -17,7 +17,6 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "operators")
-@SQLRestriction("inactive <> true")
 public class Operator {
 	
 	@Id
