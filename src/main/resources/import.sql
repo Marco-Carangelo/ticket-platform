@@ -5,4 +5,3 @@ INSERT INTO categories( id, name, description) VALUES( 1, 'Technical assistance'
 INSERT INTO category_ticket( ticket_id, category_id) VALUES (1,1), (1,2), (2,5), (3,3), (3,4), (3,5)
 INSERT INTO role (id, name) VALUES (1,'ADMIN'), (2,'OPERATOR')
 INSERT INTO user_roles (user_id, roles_id) VALUES (1,1), (2,2), (3,2), (4,2)
-
