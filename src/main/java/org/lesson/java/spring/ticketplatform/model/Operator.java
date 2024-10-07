@@ -3,7 +3,7 @@ package org.lesson.java.spring.ticketplatform.model;
 import java.util.List;
 
 import org.hibernate.annotations.Formula;
-import org.hibernate.annotations.SQLRestriction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "operators")
@@ -23,7 +23,6 @@ public class Operator {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotNull
 	@Column
 	private boolean inactive;
 	
