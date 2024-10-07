@@ -27,10 +27,28 @@
 						<span class=" badge text-bg-danger " th:if="${operator.inactive}">Not Available</span>
 					</h4>
 					
-					<a class="btn btn-warning ">
-						<span th:unless="${operator.inactive}">Set status not available</span>
-						<span th:if="${operator.inactive}">Set status Available</span>
-					 </a>
+				
+					
+					<form th:action="@{/operators/updatestatus/{id}( id = ${operator.user.id})}"
+					 method="GET"
+					 id="opStatusForm"
+					 >
+					 <div th:unless="${operator.inactive}">
+						<input	class="visually-hidden" type="text" value="setInactive" name="setStatus">
+						<button class="btn btn-warning " 
+						 th:classappend="${ operator.ticketsToClose == 0 ? 'active' : 'disabled'}"
+						 type="submit">
+	 						Set status not available
+						</button>
+					 </div>
+					 
+					 <div th:if="${operator.inactive}">
+	 				 	<input	class="visually-hidden" type="text" name="setStatus">
+	 					 <button class="btn btn-warning " type="submit">Set status Available </button>
+	 				</div>	
+					 	
+					</form>
+					
 				</div> 
 				<div  class=" text-center mb-3">
 					<h4>List of the assigned tickets:</h4>
