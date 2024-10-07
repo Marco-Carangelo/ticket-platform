@@ -95,7 +95,7 @@ public class TicketController {
 		model.addAttribute("categoryList", categoryService.findCategories());
 		
 		//Add a list of active operators to the model
-		model.addAttribute("activeOperators", operatorService.findOperators());
+		model.addAttribute("activeOperators", operatorService.findActiveOperators());
 		return "/tickets/create";
 		
 	}
