@@ -37,7 +37,27 @@ public class TicketRestController {
 	}
 	
 	
-
+	@GetMapping("/{status}")
+	public ResponseEntity<List<Ticket>> getTicketsByStatus(@PathVariable("status") String requiredStatus){
+		
+		List<Ticket> result;
+		
+		switch(requiredStatus.toUpperCase()) {
+		case "OPEN":
+			result = ticketService.findTicketByStatus(Status.OPEN);
+			break;
+		case "IN_PROGRESS":
+			result = ticketService.findTicketByStatus(Status.IN_PROGRESS);	
+			break;
+		case "CLOSED":
+			result = ticketService.findTicketByStatus(Status.CLOSED);
+			break;
+		default:
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 	
 	
 
