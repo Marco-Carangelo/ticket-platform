@@ -1,9 +1,12 @@
 package org.lesson.java.spring.ticketplatform.controller.api;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.lesson.java.spring.ticketplatform.model.Category;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
+import org.lesson.java.spring.ticketplatform.service.CategoryService;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +25,9 @@ public class TicketRestController {
 	@Autowired
 	 private TicketService ticketService;
 	
+	@Autowired
+	 private CategoryService categoryService;
+	
 	//This method returns all the existing tickets
 	@GetMapping
 	public ResponseEntity<List<Ticket>> index(){
@@ -36,7 +42,7 @@ public class TicketRestController {
 	
 	}
 	
-	
+	//Method to filter the tickets by status
 	@GetMapping("/{status}")
 	public ResponseEntity<List<Ticket>> getTicketsByStatus(@PathVariable("status") String requiredStatus){
 		
@@ -59,6 +65,21 @@ public class TicketRestController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	
+	
+	@GetMapping("/{category}")
+	public ResponseEntity<List<Ticket>> getTicketsByCategory(@PathVariable("category") String requestCategory){
+		
+		List<Ticket> result;
+		Optional<Category> category =  Optional.of(categoryService.findCategoryByName(requestCategory));
+		
+		if(category.isPresent()) {
+			result = category.get().getTickets();
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 	
 
 }
