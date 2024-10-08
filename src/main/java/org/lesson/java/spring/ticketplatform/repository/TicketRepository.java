@@ -12,6 +12,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer>  {
 	
 	public List<Ticket> findByTicketStatusEquals(Status status);
 	
-		
+	
 	
 }
