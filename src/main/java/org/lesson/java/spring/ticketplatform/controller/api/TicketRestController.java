@@ -6,6 +6,8 @@ import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,23 +24,20 @@ public class TicketRestController {
 	
 	//This method returns all the existing tickets
 	@GetMapping
-	public List<Ticket> index(){
+	public ResponseEntity<List<Ticket>> index(){
 		
 		List<Ticket> result = ticketService.findTickets();
 		
-		return result;
+		if(!result.isEmpty()) {
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	
 	}
 	
 	
-	@GetMapping("/{status}")
-	public List<Ticket> getTicketsByStatus(@PathVariable("status") String requiredStatus){
-		
-		
-		
-		List<Ticket> result = ticketService.findTickets();
-		
-		return result;
-	}
+
 	
 	
 
