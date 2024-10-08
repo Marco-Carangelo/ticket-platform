@@ -17,5 +17,10 @@ public class CategoryService {
 		
 		return repository.findAll();
 	}
+	
+	public Category findCategoryByName(String name) {
+		
+		return repository.findByNameIgnoreCase(name);
+	}
 
 }
