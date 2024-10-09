@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.annotations.Formula;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,10 +29,12 @@ public class Operator {
 	private boolean inactive;
 	
 	@OneToMany(mappedBy = "operator")
+	@JsonBackReference
 	private List<Ticket> tickets;
 	
 	@OneToOne
 	@JoinColumn(name = "user_id")
+	@JsonBackReference
 	private User user;
 	
 
