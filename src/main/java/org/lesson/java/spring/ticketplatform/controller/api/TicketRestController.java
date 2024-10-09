@@ -44,9 +44,10 @@ public class TicketRestController {
 	}
 	
 	//Method to filter the tickets by status
-	@GetMapping("/{status}")
-	public ResponseEntity<List<Ticket>> getTicketsByStatus(@PathVariable("status") String requiredStatus){
+	@GetMapping("/{requiredStatus}")
+	public ResponseEntity<List<Ticket>> getTicketsByStatus(@PathVariable("requiredStatus") String requiredStatus){
 		
+		System.out.println("VARIABILE ROUTE" + requiredStatus);
 		List<Ticket> result;
 		
 		switch(requiredStatus.toUpperCase()) {
@@ -68,7 +69,7 @@ public class TicketRestController {
 	
 	
 	
-	@GetMapping("/{category}")
+	@GetMapping("/category/{category}")
 	public ResponseEntity<List<Ticket>> getTicketsByCategory(@PathVariable("category") String requestCategory){
 		
 		List<Ticket> result;
@@ -83,7 +84,7 @@ public class TicketRestController {
 	}
 	
 
-	@GetMapping
+	@GetMapping("/category")
 	public ResponseEntity<List<Ticket>> getTicketsByCategoryList(@RequestParam(name = "categories") List<Category> categories){
 		
 		List<Ticket> result;
