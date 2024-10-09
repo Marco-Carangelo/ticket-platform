@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -82,4 +83,27 @@ public class TicketRestController {
 	}
 	
 
+	@GetMapping
+	public ResponseEntity<List<Ticket>> getTicketsByCategoryList(@RequestParam(name = "categories") List<Category> categoryList){
+		
+		List<Ticket> result;
+		result = categoryList.get(0).getTickets();
+		
+		for(int i = 1; i < categoryList.size(); i++) {
+			
+			for(Ticket t: result) {
+				if(!categoryList.get(i).getTickets().contains(t)) {
+					result.remove(t);
+				}
+			}
+			
+			if(result.isEmpty()) {
+				
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+			}
+		}
+
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 }
