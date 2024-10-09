@@ -84,15 +84,15 @@ public class TicketRestController {
 	
 
 	@GetMapping
-	public ResponseEntity<List<Ticket>> getTicketsByCategoryList(@RequestParam(name = "categories") List<Category> categoryList){
+	public ResponseEntity<List<Ticket>> getTicketsByCategoryList(@RequestParam(name = "categories") List<Category> categories){
 		
 		List<Ticket> result;
-		result = categoryList.get(0).getTickets();
+		result = categories.get(0).getTickets();
 		
-		for(int i = 1; i < categoryList.size(); i++) {
+		for(int i = 1; i < categories.size(); i++) {
 			
 			for(Ticket t: result) {
-				if(!categoryList.get(i).getTickets().contains(t)) {
+				if(!categories.get(i).getTickets().contains(t)) {
 					result.remove(t);
 				}
 			}
