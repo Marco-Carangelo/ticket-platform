@@ -2,23 +2,23 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 	
-	<head>
+<head>
 		
-		<!--HEAD FRAGMENT-->
-		<th:block th:fragment="head" >
-			
-			<title>Ticket Platform</title>
-			
-			<!-- Required meta tags -->
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<!--HEAD FRAGMENT-->
+	<th:block th:fragment="head(title)" >
+	
+		<title th:text="${title}"></title>
 		
-			<!-- Bootstrap CSS -->
-			<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">	
+	
+		<!-- Bootstrap CSS -->
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+	
+	</th:block>
 		
-		</th:block>
-		
-	</head>
+</head>
 	
 <body>
 	
