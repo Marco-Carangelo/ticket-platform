@@ -33,6 +33,18 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
+	
+	//Create method
+	
+	@GetMapping("/create")
+	public String create(Model model) {
+		
+		User user = new User();
+		model.addAttribute("user",user);
+		return "/user/create";
+		
+	}
+	
 	// Update method
 	
 	@GetMapping("/edit/{id}")
