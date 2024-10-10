@@ -54,7 +54,7 @@ public class Ticket {
 	@Column 
 	LocalDateTime updatedAt;
 	
-	@OneToMany(mappedBy = "ticket")
+	@OneToMany(mappedBy = "ticket", cascade = { CascadeType.REMOVE })
 	private List<Note> notes;
 	
 	@NotEmpty
