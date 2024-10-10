@@ -36,12 +36,13 @@
 						method="POST"
 					>
 					
-					<ul>
-						<li
-							th:each="err : ${#fields.allErrors()}"
+					<div th:if="${#fields.hasGlobalErrors()}">
+						<p 
+							class="alert alert-danger"
+							th:each="err : ${#fields.errors('global')}"
 							th:text="${err}">
-						</li>
-					</ul>
+						</p>
+					</div>
 					
 						<!--Form section for ticket head-->
 						<div class="mb-4">
@@ -74,12 +75,6 @@
 						  <select class="form-select" id="ticketOperator" multiple aria-label="Multiple select example" th:field="*{operator.id}">
 						    <option th:each="selectOperator : ${activeOperators}" th:value="${selectOperator.id}">[[${selectOperator.user.name}]] [[${selectOperator.user.surname}]]</option>
 						  </select>
-						  
-						  <div th:if="${#fields.hasErrors('operator.id')}" class="invalid-feedback d-block">
-								<ul>
-									<li class="alert alert-danger" th:each="err : ${#fields.errors('operator.id')}" th:text="${err}"></li>
-								</ul>
-							</div>
 						 
 						</div>
 						
