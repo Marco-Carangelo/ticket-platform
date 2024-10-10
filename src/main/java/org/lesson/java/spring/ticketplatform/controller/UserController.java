@@ -41,8 +41,24 @@ public class UserController {
 		
 		User user = new User();
 		model.addAttribute("user",user);
-		return "/user/create";
+		return "/users/create";
 		
+	}
+	
+	@PostMapping("/create")
+	public String store(
+			@Valid @ModelAttribute("user") User formUser,
+			BindingResult bindingResult,
+			Model model) {
+		
+		if(bindingResult.hasErrors()) {
+			return "/users/create";
+		}
+		
+		userService.createUser(formUser);
+		
+		
+		return "redirect:/tickets"; 
 	}
 	
 	// Update method
