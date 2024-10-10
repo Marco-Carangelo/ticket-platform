@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,12 +34,13 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank(message = "Insert a valid header for the ticket")
 	@Size(min = 5, max = 50)
 	@Column
 	private String ticketHeader;
 	
 	@Size(min = 10, max = 2000)
-	@NotBlank
+	@NotBlank(message = "Insert a valid text for the ticket")
 	@Column
 	private String ticketBody;
 	
@@ -57,7 +59,7 @@ public class Ticket {
 	@OneToMany(mappedBy = "ticket", cascade = { CascadeType.REMOVE })
 	private List<Note> notes;
 	
-	@NotEmpty
+	@NotEmpty(message = "Select at least one category for the ticket")
 	@ManyToMany()
 	@JoinTable(
 			name = "category_ticket",
@@ -66,7 +68,6 @@ public class Ticket {
 	)
 	@JsonBackReference
 	private List<Category> categories;
-	
 	
 	@ManyToOne
 	@JoinColumn(name="operator_id", nullable=false)
