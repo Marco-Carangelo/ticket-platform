@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,9 +22,11 @@ public class User {
 	private String username;
 	
 	@NotNull
+	@Size(min = 7, max= 15)
 	private String password;
 	
 	@NotNull
+	@Email
 	private String email;
 	
 	@Size(min = 2, max = 50)
