@@ -113,8 +113,6 @@ public class TicketController {
 			bindingResult.addError(error);
 		}
 		
-		System.out.println("ERRORI" + bindingResult.toString());
-		
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("activeOperators", operatorService.findActiveOperators());
 			model.addAttribute("categoryList", categoryService.findCategories());
