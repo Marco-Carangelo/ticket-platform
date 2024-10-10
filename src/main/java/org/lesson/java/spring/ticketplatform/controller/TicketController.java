@@ -108,6 +108,8 @@ public class TicketController {
 			RedirectAttributes attributes ) {
 		
 		if(bindingResult.hasErrors()) {
+			model.addAttribute("activeOperators", operatorService.findActiveOperators());
+			model.addAttribute("categoryList", categoryService.findCategories());
 			return "/tickets/create";
 		}
 		
