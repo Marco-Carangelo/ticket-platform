@@ -27,5 +27,10 @@ public class UserService {
 		
 		return repository.findByUsername(username);
 	}
+	
+	public User storeUser(User user) {
+		
+		return repository.save(user);
+	}
 
 }
