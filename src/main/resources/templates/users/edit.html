@@ -59,6 +59,18 @@
 							</div>
 						</div>
 						
+						<!--Form section for user password-->
+						<div class="mb-4">
+						  <label for="password" class="form-label">Password</label>
+						  <input type="password" class="form-control" id="password"  th:field="*{password}">
+						  
+							 <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback d-block">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('password')}" th:text="${err}"></li>
+								</ul>
+							</div>
+						</div>
+						
 						<!--Form section for user name and surname -->
 						<div class="mb-4">
 						  <label for="name" class="form-label">First name</label>
@@ -84,10 +96,7 @@
 							</div>
 						</div>
 						
-						<!--Hidden fields-->
-						<div class="visually-hidden">
-							<input  class="form-control" id="password" th:field="*{password}"  readonly>
-						</div>
+					
 						
 						<!--Submit, Reset and Back buttons -->
 						
