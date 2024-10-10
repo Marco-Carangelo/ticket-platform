@@ -5,8 +5,10 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import org.lesson.java.spring.ticketplatform.model.Operator;
 import org.lesson.java.spring.ticketplatform.model.Role;
 import org.lesson.java.spring.ticketplatform.model.User;
+import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.RoleService;
 import org.lesson.java.spring.ticketplatform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
+	@Autowired
+	private OperatorService operatorService;
 	
 	//Create method
 	
@@ -54,9 +58,13 @@ public class UserController {
 		if(bindingResult.hasErrors()) {
 			return "/users/create";
 		}
-		
+		//Save the new user object
 		userService.createUser(formUser);
 		
+		//Assign the new 
+		Operator operator = new Operator();
+		operator.setUser(formUser);
+		operatorService.createOperator(operator);
 		
 		return "redirect:/tickets"; 
 	}
