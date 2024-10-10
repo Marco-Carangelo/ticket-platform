@@ -20,6 +20,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -56,6 +57,7 @@ public class Ticket {
 	@OneToMany(mappedBy = "ticket")
 	private List<Note> notes;
 	
+	@NotEmpty
 	@ManyToMany()
 	@JoinTable(
 			name = "category_ticket",
@@ -65,6 +67,7 @@ public class Ticket {
 	@JsonBackReference
 	private List<Category> categories;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="operator_id", nullable=false)
 	private Operator operator;
