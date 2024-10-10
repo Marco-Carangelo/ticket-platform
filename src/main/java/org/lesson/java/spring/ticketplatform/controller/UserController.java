@@ -61,9 +61,10 @@ public class UserController {
 		//Save the new user object
 		userService.createUser(formUser);
 		
-		//Assign the new 
+		//Assign the new user to an operator
 		Operator operator = new Operator();
-		operator.setUser(formUser);
+		User justSavedUser = userService.findUserByUsarname(formUser.getUsername()).get();
+		operator.setUser(justSavedUser);
 		operatorService.createOperator(operator);
 		
 		return "redirect:/tickets"; 
@@ -90,7 +91,6 @@ public class UserController {
 			RedirectAttributes attributes) {
 		
 		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult.toString());
 			return "/users/edit";
 		}
 		
