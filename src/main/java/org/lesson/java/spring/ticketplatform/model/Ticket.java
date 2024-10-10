@@ -67,7 +67,7 @@ public class Ticket {
 	@JsonBackReference
 	private List<Category> categories;
 	
-	@NotNull
+	
 	@ManyToOne
 	@JoinColumn(name="operator_id", nullable=false)
 	private Operator operator;
