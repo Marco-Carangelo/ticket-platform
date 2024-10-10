@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -107,6 +108,13 @@ public class TicketController {
 			Model model,
 			RedirectAttributes attributes ) {
 		
+		if(formTicket.getOperator().getId() == null) {	
+			ObjectError error = new ObjectError("globalError", "Select the operator to whom assign the ticket");
+			bindingResult.addError(error);
+		}
+		
+		System.out.println("ERRORI" + bindingResult.toString());
+		
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("activeOperators", operatorService.findActiveOperators());
 			model.addAttribute("categoryList", categoryService.findCategories());
@@ -192,34 +200,33 @@ public class TicketController {
 	}
 	
 	
-	//Utility classes
-		private HashMap<String, String> setStatusColor(Status status) {
-			
-			HashMap<String, String> attributes = new HashMap<String, String>();
-			
-			switch (status) {
-				case OPEN:
-					attributes.put("badgeColor","text-bg-info");
-					attributes.put("bgColor","bg-info-subtle");
-					attributes.put("borderColor","border-info");
-	
-					break;
-				case IN_PROGRESS :
-					attributes.put("badgeColor","text-bg-warning");
-					attributes.put("bgColor","bg-warning-subtle");
-					attributes.put("borderColor","border-warning");
-					break;
-				case CLOSED:
-					attributes.put("badgeColor","text-bg-success");
-					attributes.put("bgColor","bg-success-subtle");
-					attributes.put("borderColor","border-success");
-					break;
-			}
-			
-			return attributes;
-			
-			
+	//Utility methods
+	private HashMap<String, String> setStatusColor(Status status) {
+		
+		HashMap<String, String> attributes = new HashMap<String, String>();
+		
+		switch (status) {
+			case OPEN:
+				attributes.put("badgeColor","text-bg-info");
+				attributes.put("bgColor","bg-info-subtle");
+				attributes.put("borderColor","border-info");
+
+				break;
+			case IN_PROGRESS :
+				attributes.put("badgeColor","text-bg-warning");
+				attributes.put("bgColor","bg-warning-subtle");
+				attributes.put("borderColor","border-warning");
+				break;
+			case CLOSED:
+				attributes.put("badgeColor","text-bg-success");
+				attributes.put("bgColor","bg-success-subtle");
+				attributes.put("borderColor","border-success");
+				break;
 		}
+		
+		return attributes;
+	}
 
 
+		
 }
