@@ -36,7 +36,12 @@
 						method="POST"
 					>
 					
-					
+					<ul>
+						<li
+							th:each="err : ${#fields.allErrors()}"
+							th:text="${err}">
+						</li>
+					</ul>
 					
 						<!--Form section for ticket head-->
 						<div class="mb-4">
@@ -87,6 +92,11 @@
 							  	[[${category.name}]]
 							  </label>
 							</div>
+						</div>
+						<div th:if="${#fields.hasErrors('categories')}" class="invalid-feedback d-block">
+							<ul>
+								<li class="alert alert-danger" th:each="err : ${#fields.errors('categories')}" th:text="${err}"></li>
+							</ul>
 						</div>
 						
 						<!--Submit, Reset and Back buttons -->
