@@ -35,4 +35,8 @@ public class OperatorService {
 		return repository.save(operator);
 	}
 
+	public Operator createOperator(Operator operator) {
+		
+		return repository.save(operator);
+	}
 }
