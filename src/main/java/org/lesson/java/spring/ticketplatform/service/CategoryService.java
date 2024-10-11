@@ -22,5 +22,10 @@ public class CategoryService {
 		
 		return repository.findByNameIgnoreCase(name);
 	}
+	
+	public Category saveCategory(Category category) {
+		
+		return repository.save(category);
+	}
 
 }
