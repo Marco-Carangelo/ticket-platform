@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<!--Head section incorporated by fragment-->
+<head th:insert="elements/fragments :: head(title = 'Categories')"> </head>
+		
+<body class="bg-secondary">
+	
+	<!--HEADER WITH NAVBAR -->
+	<header th:replace="elements/navbar :: header('categories')"></header>
+	
+	<!--START OF THE MAIN SECTION -->
+	<main>
+		
+		<!--Container of the main section -->
+		<div class="container-lg  bg-light rounded   ">
+			<div class="row ">
+				
+				<!--Main title of the page -->
+			    <div class="col-12 text-center py-3 ">
+			      <h1>Categories list</h1>
+			    </div>
+				
+				<!--Create page button  -->
+				<div class="d-flex justify-content-around">
+					
+					<!--Create new category button -->
+					<div class="text-center">
+						<div class="p-2 fs-4">Create a new category</div>
+						<a th:href="@{categories/create}" class="btn btn-primary btn-lg ps-3"  role="button">New category</a>
+					</div>
+					
+				</div>
+				
+				<th:block th:if="${message != null}">
+					<div th:replace="elements/fragments :: messAlert(${message} , ${alertClass})"></div>
+				</th:block>
+				
+				<!--Table with category objects list -->
+				<!--The table is showed only if there is at least one element to show -->
+				<div class="d-flex justify-content-center mb-5" th:if="${categoryList.size > 0}" >
+					<table class="table w-75 table-striped table-hover ">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Name</th>
+					      <th scope="col">Description</th>
+						 
+						  <th class="button-headers"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="category: ${categoryList}" th:object="${category}">
+					      <td>[[*{id}]]</td>
+					      <td>[[*{name}]]</td>
+						  <td >[[*{description}]]</td>
+				
+						  <td class>
+							
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" th:data-bs-target="'#delete-modal' + ${category.id}" >
+							  Delete
+							</button>
+
+							<!-- Delete Modal -->
+							<div class="modal fade" th:id="'delete-modal' + ${category.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete category</h1>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body">
+							      	Do you want to delete the category: [[${category.name}]]?
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<form class="d-inline-block"  method="POST">
+										<button type="submit" class="btn btn-warning btn-sm " >Delete</button>	
+									</form>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							
+						  </td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+				
+				
+				<!--SHOWED ONLY IF THERE ARE NO CATEGORY OBJECTS TO SHOW -->
+				<div th:unless="${categoryList.size > 0}">
+					<h2 class="text-danger text-center">There are no categories to be shown</h2>
+				</div>
+			   
+			  </div>
+		</div>
+
+	</main>
+	<!--END OF THE MAIN SECTION -->
+
+		
+	<!--Scripts links -->
+	<div th:insert="elements/fragments :: scripts">
+	</div>
+	
+</body>
+</html>
