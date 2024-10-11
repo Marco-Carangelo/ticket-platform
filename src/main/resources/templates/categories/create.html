@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<!--Head section incorporated by fragment-->
+<head th:insert="elements/fragments :: head(title = 'Create category')"> </head>
+		
+<body class="bg-secondary">
+	
+	<!--HEADER WITH NAVBAR -->
+	<header th:replace="elements/navbar :: header('categories')"></header>
+	
+	<!--START OF THE MAIN SECTION -->
+	<main>
+		
+		<!--Container of the main section -->
+		<div class="container-lg bg-light rounded   ">
+			<div class="row justify-content-center ">
+				
+				
+			<!--Main title of the page -->
+		    <div class="col-12 text-center py-3 ">
+		      <h1>Create a new category</h1>
+		    </div>
+			
+			
+			<!--Section with form -->
+
+				< class="row col-10" >
+					
+					<form
+						id="form-ticket"
+						th:object="${category}"
+						th:action="@{/category/create}"
+						method="POST"
+					>
+					
+					<!--Section to display global errors-->
+					<div th:if="${#fields.hasGlobalErrors()}">
+						<p 
+							class="alert alert-danger"
+							th:each="err : ${#fields.errors('global')}"
+							th:text="${err}">
+						</p>
+					</div>
+					
+						<!--Form section for category name-->
+						<div class="mb-4">
+						  <label for="ticketHeader" class="form-label">Category header</label>
+						  <input type="text" class="form-control" id="name" 
+						  placeholder="Insert the name of the category" th:field="*{name}">
+						  
+							 <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback d-block">
+								<ul>
+									<li class="alert alert-danger" th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--Form section for category description -->
+						<div class="mb-4">
+						  <label for="ticketBody" class="form-label">Insert the category description</label>
+						  <textarea class="form-control" id="description" rows="3" th:field="*{description}"></textarea>
+						  
+						 	 <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback d-block">
+		  						<ul>
+		  							<li class="alert alert-danger" th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+		  						</ul>
+		  					</div>
+						</div>
+						
+						
+						<!--Submit, Reset and Back buttons -->
+						
+						<div class="d-flex mb-5">
+							<button type="submit" class="btn btn-primary p-2 mx-1">Submit</button>
+							<button type="reset" class="btn btn-danger p-2 mx-1">Reset</button>
+							<a class="btn btn-primary p-2 ms-auto mx-1" th:href="@{/categories}">Back</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		  </div>
+	</main>
+	<!--END OF THE MAIN SECTION -->
+	
+	<!--FOOTER -->
+<!--	<footer th:replace="elements/fragments :: footer" ></footer>-->
+
+	<!--Scripts links -->
+	<div th:insert="elements/fragments :: scripts">
+	</div>
+		
+</body>
+</html>
