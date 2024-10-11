@@ -139,6 +139,8 @@ public class TicketController {
 		Ticket ticket = ticketService.findTicketById(id);
 		model.addAttribute("ticket", ticket);
 		
+		model.addAttribute("categoryList", categoryService.findCategories());
+		
 		return "/tickets/edit";
 		
 	}
