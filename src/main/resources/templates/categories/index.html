@@ -76,7 +76,7 @@
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									<form class="d-inline-block"  method="POST">
+									<form class="d-inline-block"  method="POST" th:action="@{/categories/delete/{id}(id = *{id})}" >
 										<button type="submit" class="btn btn-warning btn-sm " >Delete</button>	
 									</form>
 							      </div>
