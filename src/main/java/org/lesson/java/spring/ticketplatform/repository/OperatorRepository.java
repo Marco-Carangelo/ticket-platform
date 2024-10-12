@@ -11,6 +11,7 @@ public interface OperatorRepository extends JpaRepository<Operator , Integer>   
 	
 	public List<Operator> findByInactiveFalse();
 	
+	//Method to find a operator given the user id
 	@Query("FROM Operator o WHERE o.user.id = :userId")
 	public Operator findByUser(@Param("userId") Integer userId);
 
