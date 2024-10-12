@@ -22,15 +22,12 @@
 			      <h1>Categories list</h1>
 			    </div>
 				
-				<!--Create page button  -->
+				<!--Create new category button -->
 				<div class="d-flex justify-content-around">
-					
-					<!--Create new category button -->
 					<div class="text-center">
 						<div class="p-2 fs-4">Create a new category</div>
 						<a th:href="@{categories/create}" class="btn btn-primary btn-lg ps-3"  role="button">New category</a>
-					</div>
-					
+					</div>	
 				</div>
 				
 				<th:block th:if="${message != null}">
@@ -58,7 +55,7 @@
 				
 						  <td class>
 							
-							<!-- Button trigger modal -->
+							<!-- Button trigger delete modal -->
 							<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" th:data-bs-target="'#delete-modal' + ${category.id}" >
 							  Delete
 							</button>
