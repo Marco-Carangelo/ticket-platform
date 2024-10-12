@@ -59,7 +59,6 @@ public class Ticket {
 	@OneToMany(mappedBy = "ticket", cascade = { CascadeType.REMOVE })
 	private List<Note> notes;
 	
-	@NotEmpty(message = "Select at least one category for the ticket")
 	@ManyToMany()
 	@JoinTable(
 			name = "category_ticket",
