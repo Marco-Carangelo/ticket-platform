@@ -15,11 +15,14 @@
 		<!--Individual links to resources-->
 	    <div class="collapse navbar-collapse fs-4" id="navbarNav">
 	      <ul class="navbar-nav ">
-	        <li class="nav-item">
+	        <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
 	          <a class="nav-link  " th:href="@{/tickets}" th:classappend="${route == 'tickets' ? 'active' : 'non-active'}">Tickets</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item"sec:authorize="hasAuthority('ADMIN')">
 	          <a class="nav-link" th:href="@{/categories}"  th:classappend="${route == 'categories' ? 'active' : 'non-active'}">Categories</a>
+	        </li>
+			<li class="nav-item" sec:authorize="hasAuthority('OPERATOR')">
+	          <a class="nav-link" th:href="@{/}"  th:classappend="${route == 'home' ? 'active' : 'non-active'}">Home</a>
 	        </li>
 	      </ul>
 	    </div>
