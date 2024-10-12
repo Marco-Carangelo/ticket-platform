@@ -1,6 +1,5 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -97,8 +96,11 @@ public class UserController {
 		//Set the OPERATOR role again for this user
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(roleService.findRoleByName("OPERATOR"));
+		
 		formUser.setRoles(roles);
 		
+		//Add encoding prefix to password
+		formUser.setPassword("{noop}" + formUser.getPassword());
 		userService.updateUser(formUser);
 		
 		attributes.addFlashAttribute("message","The user " + formUser.getUsername() + " has been updated successfully");
