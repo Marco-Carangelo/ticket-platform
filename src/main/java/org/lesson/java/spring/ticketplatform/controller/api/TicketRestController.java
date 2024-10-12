@@ -68,7 +68,7 @@ public class TicketRestController {
 	}
 	
 	
-	
+	//Method that return tickets in a single category
 	@GetMapping("/category/{category}")
 	public ResponseEntity<List<Ticket>> getTicketsByCategory(@PathVariable("category") String requestCategory){
 		
@@ -84,6 +84,7 @@ public class TicketRestController {
 	}
 	
 
+	//Method that filter tickets by multiple categories
 	@GetMapping("/category")
 	public ResponseEntity<List<Ticket>> getTicketsByCategoryList(@RequestParam(name = "categories") List<Category> categories){
 		
