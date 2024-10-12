@@ -28,11 +28,12 @@
 					</h4>
 					
 				
-					
+					<!--Form to update the operator status -->
 					<form th:action="@{/operators/updatestatus/{id}( id = ${operator.user.id})}"
 					 method="GET"
 					 id="opStatusForm"
 					 >
+					 <!--This part act like a toggle, showing the right indication for status update based on the actual status-->
 					 <div th:unless="${operator.inactive}">
 						<input	class="visually-hidden" type="text" value="setInactive" name="setStatus">
 						<button class="btn btn-warning " 
@@ -50,6 +51,8 @@
 					</form>
 					
 				</div> 
+				
+				<!--Tickets table title -->
 				<div  class=" text-center mb-3">
 					<h4>List of the assigned tickets:</h4>
 				</div>
@@ -100,6 +103,7 @@
 			   
 			</div>
 			  
+			<!--Row that display the user details -->
 			<div class="row d-flex justify-content-center">
 				
   				<h4 class="text-center mb-3 ">Operator details:</h4>
@@ -113,6 +117,7 @@
 					</ul>
 				</div>	
 				
+				<!--Link to the user update page -->
 				<div class="col-8 mb-3">
 					<a class="btn btn-primary" th:href="@{/users/edit/{id}( id = ${operator.user.id})}">Update user info</a>
 				</div>
