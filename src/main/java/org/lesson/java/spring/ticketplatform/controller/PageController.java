@@ -1,8 +1,6 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
 import java.util.Collection;
-import org.lesson.java.spring.ticketplatform.model.Operator;
-import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.UserService;
 import org.lesson.java.spring.ticketplatform.utils.AuthenticationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +9,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/")
 public class PageController {
-	
-	@Autowired
-	private OperatorService operatorService;
+
 	
 	@Autowired
 	private UserService userService;
@@ -43,39 +37,7 @@ public class PageController {
 	}
 	
 	
-	@GetMapping("/operators/{id}")
-	public String show(Model model,
-			@PathVariable("id") Integer id) {
-		
-		Operator operator = operatorService.getOperatorByUserId(id);
-				
-		model.addAttribute("operator", operator );
-		
-		return "/operators/show";
-	}
-	
-	
-	@GetMapping("/operators/updatestatus/{id}")
-	public String updateStatus(Model model,
-			@RequestParam(name = "setStatus", required = false)String setStatus,
-			@PathVariable("id") Integer id) {
-		
-		
-		Operator operator = operatorService.getOperatorByUserId(id);
-		
-		if(setStatus.equals("setInactive")) {
-			operator.setInactive(true);
-		}else {
-			operator.setInactive(false);
-		}
-		
-		model.addAttribute("operator", operator );
-		
-		operatorService.updateOperator(operator);
-		
-		return "/operators/show";
-	}
-			
+
 	
 	
 
