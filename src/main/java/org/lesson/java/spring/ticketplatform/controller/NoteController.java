@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import org.lesson.java.spring.ticketplatform.model.Note;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
-import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.service.NoteService;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
