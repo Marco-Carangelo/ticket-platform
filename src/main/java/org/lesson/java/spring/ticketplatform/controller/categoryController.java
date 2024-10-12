@@ -3,6 +3,7 @@ package org.lesson.java.spring.ticketplatform.controller;
 import org.lesson.java.spring.ticketplatform.model.Category;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
 import org.lesson.java.spring.ticketplatform.service.CategoryService;
+import org.lesson.java.spring.ticketplatform.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class categoryController {
 	
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	TicketService ticketService;
 	
 	@GetMapping
 	public String index(Model model) {
@@ -59,6 +63,13 @@ public class categoryController {
 	@PostMapping("/delete/{id}")
 	public String delete( @PathVariable("id") Integer id) {
 		
+		Category categoryToDelete = categoryService.getCategoryById(id);
+		
+		//Deleting all the reference of the category to delete inside the tickets
+		for (Ticket ticket : categoryToDelete.getTickets()) {
+			
+			ticket.getCategories().remove(categoryToDelete);
+		}
 		
 		categoryService.deleteCategoryById(id);
 
