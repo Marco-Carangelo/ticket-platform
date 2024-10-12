@@ -30,7 +30,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/tickets")
 public class TicketController {
 	
-	
+	//Service class of the entities used
 	@Autowired
 	private TicketService ticketService;
 	
@@ -43,18 +43,19 @@ public class TicketController {
 	@Autowired
 	private UserService userService;
 	
+	// Controller methods
 	
 	// Index method
 	@GetMapping
 	public String index(Model model, @RequestParam( name = "searchedText", required = false ) String searchedText) {
 		
+		//The method return the complete list of tickets only if the search field is empty
 		if( searchedText != null && !searchedText.isEmpty()) {
 			
 			model.addAttribute("ticketList", ticketService.findTicketsContains(searchedText));
 		}else {
 			
 			model.addAttribute("ticketList", ticketService.findTickets());
-			
 		}	
 		
 		return "/tickets/index";
@@ -66,19 +67,21 @@ public class TicketController {
 			@PathVariable("id") Integer id,
 			Authentication authentication) {
 		
+		//Get the required ticket and add it to the model
 		Ticket ticket = ticketService.findTicketById(id);
 		model.addAttribute("ticket", ticket );
 		
-		//Adding to model the attributes to set the status elements color
+		//Adding to model the attributes to set the status elements color with the method setStatusColor
 		Status status = ticket.getTicketStatus();
 		model.addAllAttributes(setStatusColor(status));
 		
-		//Adding to model a blank Note to let the user add one
+		//Adding to model a blank Note object
 		Note note = new Note();
 		note.setTicket(ticket);
 		model.addAttribute("note", note);
 		
 		//Adding to model the current user id
+		//Used to redirect the operators to their view
 		Integer currentUserId =  AuthenticationUtil.getCurrentUser(authentication, userService).getId();
 		model.addAttribute("currentUserId", currentUserId);
 		
@@ -90,9 +93,11 @@ public class TicketController {
 	@GetMapping("/create")
 	public String create(Model model) {
 		
+		//Add to the model a blank ticket
 		Ticket ticket = new Ticket();
 		model.addAttribute("ticket", ticket);
 		
+		//Add to the model the category list used for the selection
 		model.addAttribute("categoryList", categoryService.findCategories());
 		
 		//Add a list of active operators to the model
@@ -108,17 +113,20 @@ public class TicketController {
 			Model model,
 			RedirectAttributes attributes ) {
 		
+		//Check if the operator field is null, and return a new error to inform the user
 		if(formTicket.getOperator().getId() == null) {	
 			ObjectError error = new ObjectError("globalError", "Select the operator to whom assign the ticket");
 			bindingResult.addError(error);
 		}
 		
+		//Check if the object has errors and reassign to the model the needed lists to try again the operation
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("activeOperators", operatorService.findActiveOperators());
 			model.addAttribute("categoryList", categoryService.findCategories());
 			return "/tickets/create";
 		}
 		
+		//Set the default field before saving the new ticket
 		formTicket.setTicketStatus(Status.OPEN);
 		formTicket.setCreatedAt(LocalDateTime.now());
 		formTicket.setUpdatedAt(LocalDateTime.now());
@@ -136,9 +144,11 @@ public class TicketController {
 	@GetMapping("/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Integer id) {
 		
+		//Get the right ticket and assign it to the model
 		Ticket ticket = ticketService.findTicketById(id);
 		model.addAttribute("ticket", ticket);
 		
+		//Add the categories list to the model for the selection
 		model.addAttribute("categoryList", categoryService.findCategories());
 		
 		return "/tickets/edit";
@@ -152,10 +162,11 @@ public class TicketController {
 			Model model,
 			RedirectAttributes attributes) {
 		
+		//Check if the edited ticket has errors and redirect the user to the edit page
 		if(bindingResult.hasErrors()) {
 			return "/tickets/edit";
 		}
-		
+		//Set the update time and save the edited ticket
 		formTicket.setUpdatedAt(LocalDateTime.now());
 		ticketService.updateTicket(formTicket);
 		
@@ -164,6 +175,7 @@ public class TicketController {
 		return "redirect:/tickets";
 	}
 	
+	//Delete method
 	@PostMapping("/delete/{id}")
 	public String delete( @PathVariable("id") Integer id,
 			RedirectAttributes attributes) {
@@ -176,6 +188,8 @@ public class TicketController {
 		return "redirect:/tickets";
 	}
 	
+	//Method to update the status of the ticket
+	//Used by operators users
 	@PostMapping("/updateStatus/{id}")
 	public String updateStatus(
 			@PathVariable("id") Integer id,
@@ -183,6 +197,7 @@ public class TicketController {
 			Model model,
 			RedirectAttributes attributes) {
 		
+		//The operators can change the status only from open to in_progress and from in_progress to closed
 		if(formTicket.getTicketStatus() == Status.OPEN) {
 			formTicket.setTicketStatus(Status.IN_PROGRESS);
 		}else {
@@ -194,8 +209,6 @@ public class TicketController {
 		formTicket.setUpdatedAt(LocalDateTime.now());
 		ticketService.updateTicket(formTicket);
 		
-//		attributes.addFlashAttribute("message","The ticket " + formTicket.getTicketHeader() + " has been updated successfully");
-//		attributes.addFlashAttribute("alertClass", "alert-success" );
 		return "redirect:/tickets/" + id;
 	}
 	
