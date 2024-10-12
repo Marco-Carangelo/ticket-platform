@@ -14,6 +14,8 @@ public class TicketService {
 	@Autowired
 	private TicketRepository repository;
 	
+	//Service methods
+	
 	public List<Ticket> findTickets(){
 		
 		return repository.findAll();

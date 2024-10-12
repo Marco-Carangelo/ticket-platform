@@ -11,6 +11,8 @@ public class RoleService {
 	
 	@Autowired
 	private RoleRepository repository;
+	
+	//Service methods
 
 	public Role findRoleByName(String role) {
 		

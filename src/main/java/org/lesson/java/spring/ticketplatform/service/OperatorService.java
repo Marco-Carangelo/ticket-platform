@@ -13,6 +13,7 @@ public class OperatorService {
 	@Autowired
 	private OperatorRepository repository;
 	
+	//Service methods
 	
 	public Operator getOperatorByUserId(Integer userId) {
 		

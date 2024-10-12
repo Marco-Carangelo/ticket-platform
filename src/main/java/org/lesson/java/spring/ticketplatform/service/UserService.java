@@ -13,6 +13,8 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
+	//Service methods
+	
 	public Optional<User> findUserById(Integer id) {
 		
 		return repository.findById(id);

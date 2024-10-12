@@ -11,6 +11,8 @@ public class NoteService {
 	@Autowired
 	private NoteRepository repository;
 	
+	//Service methods
+	
 	public Note createNote(Note note) {
 		
 		return repository.save(note);
