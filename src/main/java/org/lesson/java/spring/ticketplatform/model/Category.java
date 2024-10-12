@@ -33,6 +33,8 @@ public class Category {
 		@ManyToMany(mappedBy = "categories")
 		private List<Ticket> tickets;
 
+		
+	//Getters and setters
 		public Integer getId() {
 			return id;
 		}

@@ -15,7 +15,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "operators")
@@ -47,6 +46,7 @@ public class Operator {
 			)
 	private Integer ticketsToClose;
 	
+	//Getters and setters
 
 	public Integer getId() {
 		return id;

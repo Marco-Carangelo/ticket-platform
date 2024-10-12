@@ -13,6 +13,8 @@ public class Role {
 	@NotNull
 	private String name;
 
+	//Getters and Setters
+	
 	public Integer getId() {
 		return id;
 	}
