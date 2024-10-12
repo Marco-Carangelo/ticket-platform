@@ -32,4 +32,9 @@ public class CategoryService {
 		
 		repository.deleteById(id);
 	}
+	
+	public Category getCategoryById(Integer id) {
+		
+		return repository.findById(id).get();
+	}
 }
