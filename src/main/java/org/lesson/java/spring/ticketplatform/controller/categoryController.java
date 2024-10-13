@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/categories")
-public class categoryController {
+public class CategoryController {
 	
 	@Autowired
 	CategoryService categoryService;
@@ -73,7 +73,7 @@ public class categoryController {
 		
 		categoryService.deleteCategoryById(id);
 
-		return "redirect:/tickets";
+		return "redirect:/categories";
 	}
 	
 
