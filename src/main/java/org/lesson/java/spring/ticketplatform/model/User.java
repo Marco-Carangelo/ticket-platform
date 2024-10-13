@@ -22,6 +22,7 @@ public class User {
 	private Integer id;
 	
 	@NotNull
+	@Size(min = 4, max= 20)
 	private String username;
 	
 	@NotNull
@@ -30,6 +31,7 @@ public class User {
 	
 	@NotNull
 	@Email
+	@Size(max = 50)
 	private String email;
 	
 	@Size(min = 2, max = 50)
