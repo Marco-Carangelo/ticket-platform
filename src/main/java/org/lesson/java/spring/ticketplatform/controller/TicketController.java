@@ -114,6 +114,7 @@ public class TicketController {
 			RedirectAttributes attributes,
 			Authentication authentication) {
 		
+		
 		//Check if the operator field is null, and return a new error to inform the user
 		if(formTicket.getOperator().getId() == null) {	
 			ObjectError error = new ObjectError("globalError", "Select the operator to whom assign the ticket");
