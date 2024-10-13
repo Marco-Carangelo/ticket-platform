@@ -111,7 +111,8 @@ public class TicketController {
 			@Valid @ModelAttribute("ticket") Ticket formTicket,
 			BindingResult bindingResult,
 			Model model,
-			RedirectAttributes attributes ) {
+			RedirectAttributes attributes,
+			Authentication authentication) {
 		
 		//Check if the operator field is null, and return a new error to inform the user
 		if(formTicket.getOperator().getId() == null) {	
@@ -127,6 +128,7 @@ public class TicketController {
 		}
 		
 		//Set the default field before saving the new ticket
+		formTicket.setCreatedBy(authentication.getName());
 		formTicket.setTicketStatus(Status.OPEN);
 		formTicket.setCreatedAt(LocalDateTime.now());
 		formTicket.setUpdatedAt(LocalDateTime.now());
