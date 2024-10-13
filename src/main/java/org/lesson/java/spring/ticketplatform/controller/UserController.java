@@ -57,6 +57,11 @@ public class UserController {
 		if(bindingResult.hasErrors()) {
 			return "/users/create";
 		}
+		
+		//Add encoding prefix to password
+		formUser.setPassword("{noop}" + formUser.getPassword());
+		userService.updateUser(formUser);
+		
 		//Save the new user object
 		userService.createUser(formUser);
 		
