@@ -96,6 +96,14 @@
 							</div>
 						</div>
 						
+						<!--Form section to select operator -->
+						<div class="mb-4">
+						  <label for="roles" class="form-label"></label>
+						  <select class="form-select" id="roles"  th:field="*{roles}">
+						    <option th:value="${2}" selected>OPERATOR</option>
+						  </select>
+						 
+						</div>
 					
 						
 						<!--Submit, Reset and Back buttons -->
