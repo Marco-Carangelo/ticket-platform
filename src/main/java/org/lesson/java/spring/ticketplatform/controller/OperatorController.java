@@ -34,9 +34,10 @@ public class OperatorController {
 			@RequestParam(name = "setStatus", required = false)String setStatus,
 			@PathVariable("id") Integer id) {
 		
-		
+		//Get the operator by id
 		Operator operator = operatorService.getOperatorByUserId(id);
 		
+		//If the setStatus variable have value "setInactive", the inactive field is set to true, otherwise to false
 		if(setStatus.equals("setInactive")) {
 			operator.setInactive(true);
 		}else {
