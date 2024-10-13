@@ -26,10 +26,10 @@
 			
 			<!--Section with object details -->
 				<div class="row col-10 border-bottom border-2 mb-2  pt-2 rounded"  th:object="${ticket}" >
-				  <div class="d-flex border-bottom mb-3 pb-3">
+				  <div class="d-flex pb-3">
 						<div class="col-7">
 							<h5 class=" mb-2">[[*{ticketHeader}]]</h5>
-					    	<h6 class=" mb-3 text-body-secondary">Opened by username</h6>
+					    	<h6 class=" mb-3 text-body-secondary">Opened by <span class="fst-italic">[[*{createdBy}]] </span></h6>
 							<!-- Operator working on the ticket -->			
 							<h5>Assigned to the operator: <span class="fst-italic">[[*{operator.user.name}]] [[*{operator.user.surname}]]</span></h5>
 												
@@ -87,7 +87,7 @@
 					</div>
 					
 					<!-- Section for display the ticket categories -->
-					<div class="mb-3">
+					<div class="mb-3 border-bottom pb-3">
 						<span class="fw-4">Categories: </span> 
 						<span class="badge text-bg-warning mx-1 " th:each="category : *{categories}">[[${category.name}]]</span>
 					</div>
