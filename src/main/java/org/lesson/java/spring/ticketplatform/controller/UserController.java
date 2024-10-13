@@ -1,11 +1,7 @@
 package org.lesson.java.spring.ticketplatform.controller;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
-
 import org.lesson.java.spring.ticketplatform.model.Operator;
-import org.lesson.java.spring.ticketplatform.model.Role;
 import org.lesson.java.spring.ticketplatform.model.User;
 import org.lesson.java.spring.ticketplatform.service.OperatorService;
 import org.lesson.java.spring.ticketplatform.service.RoleService;
@@ -44,6 +40,7 @@ public class UserController {
 		
 		User user = new User();
 		model.addAttribute("user",user);
+		model.addAttribute("roleList" , roleService.findRoles());
 		return "/users/create";
 		
 	}
@@ -80,6 +77,7 @@ public class UserController {
 	public String edit(Model model, @PathVariable("id") Integer id) {
 		
 		Optional<User> user = userService.findUserById(id);
+		model.addAttribute("roleList" , roleService.findRoles());
 		model.addAttribute("user", user.get());
 		
 		return "/users/edit";
@@ -97,11 +95,7 @@ public class UserController {
 		if(bindingResult.hasErrors()) {
 			return "/users/edit";
 		}
-		
-		//Set the OPERATOR role again for this user
-		Set<Role> roles = new HashSet<Role>();
-		roles.add(roleService.findRoleByName("OPERATOR"));
-		formUser.setRoles(roles);
+
 		
 		//Add encoding prefix to password
 		formUser.setPassword("{noop}" + formUser.getPassword());
