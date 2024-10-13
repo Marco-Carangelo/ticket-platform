@@ -66,12 +66,13 @@
 									
 									>
 										<div class="visually-hidden">
-											<input type="text" value="prova status" class="form-control" id="statusHeader" th:field="*{ticketHeader}"  readonly>
+											<input type="text"  class="form-control" id="statusHeader" th:field="*{ticketHeader}"  readonly>
 											<input class="form-control" id="statusBody" th:field="*{ticketBody}"  readonly>
 											<input type="datetime" class="form-control" id="statusCreatedAt" th:field="*{createdAt}"  readonly>
 											<input  class="form-control" id="statusCategories" th:field="*{categories}"  readonly>
 											<input  id="statusOperator" th:field="*{operator.id}"  readonly>
 											<input id="statusStatus" th:field="*{ticketStatus}"  readonly >
+											<input type="text" class="form-control" id="createdBy" th:field="*{createdBy}"  readonly>
 										</div>
 										
 								        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
