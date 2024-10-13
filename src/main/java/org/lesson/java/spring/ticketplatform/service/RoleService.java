@@ -1,5 +1,7 @@
 package org.lesson.java.spring.ticketplatform.service;
 
+import java.util.List;
+
 import org.lesson.java.spring.ticketplatform.model.Role;
 import org.lesson.java.spring.ticketplatform.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +15,8 @@ public class RoleService {
 	private RoleRepository repository;
 	
 	//Service methods
-
-	public Role findRoleByName(String role) {
-		
-		return repository.findByName(role);
-	}
 	
-	public List<Role> findRole(){
+	public List<Role> findRoles(){
 		
 		return repository.findAll();
 	}
