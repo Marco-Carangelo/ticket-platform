@@ -51,7 +51,7 @@ public class Ticket {
 	@Column
 	@NotNull
 	@Size(min = 4, max= 20)
-	private String createdBy;
+	private String createdBy = "****";
 	
 	@NotNull
 	@Column
