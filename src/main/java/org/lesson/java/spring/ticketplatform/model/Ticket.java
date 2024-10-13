@@ -48,6 +48,11 @@ public class Ticket {
 	@Enumerated(EnumType.STRING)
 	private Status ticketStatus = Status.OPEN;
 	
+	@Column
+	@NotNull
+	@Size(min = 4, max= 20)
+	private String createdBy;
+	
 	@NotNull
 	@Column
 	private LocalDateTime createdAt;
@@ -201,6 +206,18 @@ public class Ticket {
 	public void setOperator(Operator operator) {
 		this.operator = operator;
 	}
+
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
 
 
 
