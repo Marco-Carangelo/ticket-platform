@@ -19,4 +19,9 @@ public class RoleService {
 		return repository.findByName(role);
 	}
 	
+	public List<Role> findRole(){
+		
+		return repository.findAll();
+	}
+	
 }
