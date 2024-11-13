@@ -3,6 +3,8 @@ package org.lesson.java.spring.ticketplatform.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.lesson.java.spring.ticketplatform.utils.Status;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
@@ -218,17 +220,5 @@ public class Ticket {
 	}
 
 
-
-
-
-
-
-
-	//Enum object with the possible status of a ticket
-	public enum Status{
-		OPEN,
-		IN_PROGRESS,
-		CLOSED
-	}
 
 }

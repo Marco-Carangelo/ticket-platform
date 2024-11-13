@@ -3,8 +3,8 @@ package org.lesson.java.spring.ticketplatform.service;
 import java.util.List;
 
 import org.lesson.java.spring.ticketplatform.model.Ticket;
-import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.repository.TicketRepository;
+import org.lesson.java.spring.ticketplatform.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

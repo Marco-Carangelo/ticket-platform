@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.lesson.java.spring.ticketplatform.model.Category;
 import org.lesson.java.spring.ticketplatform.model.Ticket;
-import org.lesson.java.spring.ticketplatform.model.Ticket.Status;
 import org.lesson.java.spring.ticketplatform.service.CategoryService;
 import org.lesson.java.spring.ticketplatform.service.TicketService;
+import org.lesson.java.spring.ticketplatform.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -84,28 +84,5 @@ public class TicketRestController {
 	}
 	
 
-	//Method that filter tickets by multiple categories
-	@GetMapping("/category")
-	public ResponseEntity<List<Ticket>> getTicketsByCategoryList(@RequestParam(name = "categories") List<Category> categories){
-		
-		List<Ticket> result;
-		result = categories.get(0).getTickets();
-		
-		for(int i = 1; i < categories.size(); i++) {
-			
-			for(Ticket t: result) {
-				if(!categories.get(i).getTickets().contains(t)) {
-					result.remove(t);
-				}
-			}
-			
-			if(result.isEmpty()) {
-				
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-			}
-		}
 
-		
-		return new ResponseEntity<>(result, HttpStatus.OK);
-	}
 }
