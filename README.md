@@ -14,4 +14,13 @@ Gli operatori hanno la possibilità di visualizzare la propria pagina utente, da
 
 ## Struttura del progetto
 
+#### Dashboard admin
+![admin](https://github.com/user-attachments/assets/4b9d8f30-b4b0-4c59-bce3-412cd3ec892b)
+
+La dashborda dell'admin è costituita da 4 elementi principali:
+1. La lista di tutti i ticket presenti nel database.
+2. Un campo per la ricerca del ticket in base all'intestazione.
+3. Il pulsante per accedere al form per creare un nuovo ticket.
+4. Il pulsante per accedere al form per creare un nuovo operatore.
+
 
