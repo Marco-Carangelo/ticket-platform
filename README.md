@@ -39,6 +39,8 @@ Permette di accedere alla pagina contenente il form per creare un nuovo ticket.
 #### 4. Pulsante crea nuovo operatore
 Permette di accedere alla pagina contenente il form per creare un nuovo operatore.
 
+La dashbord admin è visibile solo agli utenti con ruolo admin.
+
 ### Pagina dettaglio ticket
 ![ticket](https://github.com/user-attachments/assets/a18ae79b-7bc0-44f1-95fc-601a972eccac)
 
@@ -56,4 +58,20 @@ Nella seconda parte della pagina sono presenti il testo del ticket contenente la
 *Un utente con ruolo **admin** può modificare lo stato in modo arbitrario dalla pagina di modifica del ticket.
  
 ### Pagina operatore
+![operator](https://github.com/user-attachments/assets/2049fd39-2968-46f7-bc4c-2fb8517db7b8)
+
+La dashbord dell'operatore ha 3 sezioni principali_
+1. Nella parte superiore la sezione dedicata allo stato di attività dell'operatore
+2. Nella parte centrale la lista dei ticket a lui assegnati
+3. Nella parte inferiore i dettagli dell'operatore
+
+#### 1. Stato operatore
+Nella parte sinistra della sezione abbiamo l'indicazione dello stato attuale dell'operatore che può essere disponibile(Available) o non disponibile(Not Available).
+Nella parte destra abbiamo il pulsante per cambiare lo stato dell'operatore. L'operatore può settare lo stato su Not Available solo se non ha ticket aperti o in fase di lavorazione nella lista, pertanto il pulsante si attiverà solo quando lo stato di tutti i ticket nella lista sarà impostato su CLOSED. Nel caso lo stato sia impostato su non attivo invece, l'operatore potrà sempre usare il pulsante per ritornare attivo.
+
+#### 2. Lista ticket
+Lista dei ticket in formato tabellare analoga a quella vista nella dashboard dell'admin. In questa tabella sono contenuti solo i dettagli riguardanti i ticket assegnati ad uno specifico operatore ed è presento solo il pulsante _show_ nella specifica colonna della tabella, in quanto l'operatore ha un'authority che gli consente di accedere solo a questa funzionalità.
+
+#### 3. Dettagli operatore
+Nella parte inferiore della pagine è presente una tabella riportante i dettagli del profilo dell'opertatore.
 
